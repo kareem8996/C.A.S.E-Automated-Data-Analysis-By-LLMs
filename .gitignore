@@ -1,0 +1,15 @@
+# Exclude Python virtual environments
+venv/
+.env/
+
+# Python-related files
+*.pyc
+__pycache__/
+
+# IDE/Editor-related files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
