@@ -301,11 +301,13 @@ def create_faceted_bar_chart(
         )
         fig.update_layout(
                 template="plotly_dark",)
+        logger.info(f"Facet Bar Chart Created Successfully")
+
         return fig
 
     except ValueError as e:
-        print(f"ValueError: {e}")
+        logger.error(f"ValueError: {e}")
         return None
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        logger.error(f"An unexpected error occurred: {e}")
         return None
