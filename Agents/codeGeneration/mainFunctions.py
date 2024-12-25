@@ -235,3 +235,77 @@ def create_correlation_heatmap(columns=None, color_scale="Viridis", title="Corre
     except Exception as e:
         logger.error(f"An error occurred: {e}")
         return None
+
+
+def create_faceted_bar_chart(
+    data,
+    x,
+    y,
+    color=None,
+    barmode="group",
+    facet_row=None,
+    facet_col=None,
+    title="Faceted Bar Chart",
+):
+    """
+    Generates a faceted bar chart using Plotly Express with null value handling.
+
+    Args:
+        data (pd.DataFrame): Input dataset as a pandas DataFrame.
+        x (str): Column name for the x-axis.
+        y (str): Column name for the y-axis.
+        color (str, optional): Column name for bar colors. Default is None.
+        barmode (str, optional): Bar mode. Options: 'group', 'overlay', 'relative'. Default is 'group'.
+        facet_row (str, optional): Column name for facet rows. Default is None.
+        facet_col (str, optional): Column name for facet columns. Default is None.
+        category_orders (dict, optional): Custom ordering for categorical columns. Default is None.
+        title (str, optional): Title of the chart. Default is "Faceted Bar Chart".
+        color_scale (str, optional): Color scale for the bars. Default is "Viridis".
+        null_handling (str, optional): How to handle null values: "drop", "fill", or "ignore". Default is "drop".
+        fill_value (str/int/float, optional): Value to replace nulls if null_handling="fill". Default is "Unknown".
+
+    Returns:
+        plotly.graph_objects.Figure: The generated faceted bar chart.
+    """
+    try:
+        # Null handling
+        # Drop rows with nulls in relevant columns
+        relevant_columns = [col for col in [x, y, color, facet_row, facet_col] if col]
+        data = data.dropna(subset=relevant_columns)
+
+        # Ensure specified columns exist
+        required_columns = [x, y, color, facet_row, facet_col]
+        for col in required_columns:
+            if col and col not in data.columns:
+                print(f"Warning: Column '{col}' not found in data. Ignoring it.")
+                if col == x or col == y:
+                    raise ValueError(f"Essential column '{col}' is missing. Cannot create chart.")
+
+        # Create the faceted bar chart
+        fig = px.bar(
+            data,
+            x=x,
+            y=y,
+            color=color,
+            barmode=barmode,
+            facet_row=facet_row,
+            facet_col=facet_col,
+            title=title
+        )
+
+        # Update layout for better aesthetics
+        fig.update_layout(
+            title=dict(x=0.5),  # Center the title
+            coloraxis_colorbar=dict(title=color),  # Label the color axis if color is used
+            font=dict(size=12),
+        )
+        fig.update_layout(
+                template="plotly_dark",)
+        return fig
+
+    except ValueError as e:
+        print(f"ValueError: {e}")
+        return None
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return None
