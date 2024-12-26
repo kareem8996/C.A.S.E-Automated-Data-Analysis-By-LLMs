@@ -577,3 +577,173 @@ def create_faceted_bar_chart(
     except Exception as e:
         logger.error(f"An unexpected error occurred: {e}")
         return None
+    
+def create_histogram(data, x, color=None, x_label=None, y_label=None):
+    """
+    Create a histogram using Plotly Express.
+    
+    Parameters:
+        data (DataFrame): The dataset to plot.
+        x (str): The column name for the x-axis.
+        color (str, optional): The column name to be used for color encoding. Default is None.
+        x_label (str, optional): Label for the x-axis. Default is None.
+        y_label (str, optional): Label for the y-axis. Default is None.
+    
+    Returns:
+        fig (plotly.graph_objs._figure.Figure): The histogram figure object.
+    """
+    try:
+        # Check if the x column exists in the data
+        if x not in data.columns:
+            raise ValueError(f"Column '{x}' not found in the dataset.")
+
+        # Create the histogram
+        fig = px.histogram(data, x=x, color=color) 
+        return fig
+    except Exception as e:
+        #logger.error(f"An error occurred while creating the histogram: {e}")
+        print(f"An error occurred while creating the histogram: {e}")
+        
+        
+        
+def create_pie_chart(data, values, names, color=None, title=None):
+    """
+    Create a pie chart using Plotly Express.
+
+    Parameters:
+        data (DataFrame): The dataset to plot.
+        values (str): The column name for the values.
+        names (str): The column name for the names (labels).
+        color (str, optional): The column name to be used for color encoding. Default is None.
+        title (str, optional): The title of the pie chart. Default is None.
+
+    Returns:
+        fig (plotly.graph_objs._figure.Figure): The pie chart figure object.
+    """
+    try:
+        # Check if the values and names columns exist in the data
+        if values not in data.columns:
+            raise ValueError(f"Column '{values}' not found in the dataset.")
+        if names not in data.columns:
+            raise ValueError(f"Column '{names}' not found in the dataset.")
+
+        # Create the pie chart
+        fig = px.pie(data, values=values, names=names, color=color, title=title)
+        return fig
+    except Exception as e:
+        print(f"An error occurred while creating the pie chart: {e}")
+        
+        
+        
+def create_area_chart(data, x, y, color=None, x_label=None, y_label=None, title=None):
+    """
+    Create an area chart using Plotly Express.
+
+    Parameters:
+        data (DataFrame): The dataset to plot.
+        x (str): The column name for the x-axis.
+        y (str): The column name for the y-axis.
+        color (str, optional): The column name to be used for color encoding. Default is None.
+        x_label (str, optional): Label for the x-axis. Default is None.
+        y_label (str, optional): Label for the y-axis. Default is None.
+        title (str, optional): Title of the area chart. Default is None.
+
+    Returns:
+        fig (plotly.graph_objs._figure.Figure): The area chart figure object.
+    """
+    try:
+        # Check if the x and y columns exist in the data
+        if x not in data.columns:
+            raise ValueError(f"Column '{x}' not found in the dataset.")
+        if y not in data.columns:
+            raise ValueError(f"Column '{y}' not found in the dataset.")
+
+        # Create the area chart
+        fig = px.area(data, x=x, y=y, color=color, title=title, labels={'x': x_label, 'y': y_label})
+        return fig
+    except Exception as e:
+        print(f"Error creating area chart: {e}")
+        
+        
+def create_boxplot(data, x=None, y=None, color=None, x_label=None, y_label=None):
+    """
+    Create a box plot using Plotly Express.
+    
+    Parameters:
+        data (DataFrame): The dataset to plot.
+        x (str, optional): The column name for the x-axis. Default is None.
+        y (str): The column name for the y-axis.
+        color (str, optional): The column name to be used for color encoding. Default is None.
+        x_label (str, optional): Label for the x-axis. Default is None.
+        y_label (str, optional): Label for the y-axis. Default is None.
+    
+    Returns:
+        fig (plotly.graph_objs._figure.Figure): The box plot figure object.
+    """
+    try:
+        # Check if y column exists in the data
+        if y not in data.columns:
+            raise ValueError(f"Column '{y}' not found in the dataset.")
+        
+        # Check if x column exists (if provided)
+        if x and x not in data.columns:
+            raise ValueError(f"Column '{x}' not found in the dataset.")
+        
+        # Check if color column exists (if provided)
+        if color and color not in data.columns:
+            raise ValueError(f"Column '{color}' not found in the dataset.")
+
+        # Create the box plot
+        fig = px.box(data, x=x, y=y, color=color)
+        
+        # Update axis labels if provided
+        if x_label:
+            fig.update_xaxes(title_text=x_label)
+        if y_label:
+            fig.update_yaxes(title_text=y_label)
+        return fig
+    except Exception as e:
+        print(f"Error: {e}")
+        
+        
+def create_violin_plot(data, x=None, y=None, color=None, points=None, hover_data=None, x_label=None, y_label=None):
+    """
+    Create a violin plot using Plotly Express.
+    
+    Parameters:
+        data (DataFrame): The dataset to plot.
+        x (str): The column name for the x-axis.
+        y (str): The column name for the y-axis.
+        color (str, optional): The column name to be used for color encoding. Default is None.
+        points (str, optional): Whether to show data points. Options are 'all', 'outliers', 'suspectedoutliers', or 'false'. Default is 'all'.
+        hover_data (list, optional): Additional data to display when hovering over points. Default is None.
+        x_label (str, optional): Label for the x-axis. Default is None.
+        y_label (str, optional): Label for the y-axis. Default is None.
+    
+    Returns:
+        fig (plotly.graph_objs._figure.Figure): The violin plot figure object.
+    """
+    try:
+        # Check if y column exists in the data
+        if y not in data.columns:
+            raise ValueError(f"Column '{y}' not found in the dataset.")
+        
+        # Check if x column exists (if provided)
+        if x and x not in data.columns:
+            raise ValueError(f"Column '{x}' not found in the dataset.")
+        
+        # Check if color column exists (if provided)
+        if color and color not in data.columns:
+            raise ValueError(f"Column '{color}' not found in the dataset.")
+
+        # Create the violin plot
+        fig = px.violin(data, x=x, y=y, color=color, points=points, hover_data=hover_data)
+        
+        # Update axis labels if provided
+        if x_label:
+            fig.update_xaxes(title_text=x_label)
+        if y_label:
+            fig.update_yaxes(title_text=y_label)
+        return fig
+    except Exception as e:
+       print(f"An error occurred: {e}")  
