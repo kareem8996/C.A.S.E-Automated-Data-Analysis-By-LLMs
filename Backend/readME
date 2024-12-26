@@ -1,0 +1,16 @@
+# C.A.S.E Automated Data Analysis By LLMs
+
+## Running the Backend API
+
+To run the backend API using `uvicorn`, follow these steps:
+
+### Step 1: Install Dependencies
+
+Ensure you have `uvicorn` and other dependencies installed. You can install them using `pip`:
+
+```sh
+pip install uvicorn fastapi
+```
+Step 2: Navigate to the Project Directory
+Navigate to the directory where mainRouter.py is located and run the file
+

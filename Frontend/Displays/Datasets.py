@@ -1,74 +1,77 @@
 import streamlit as st
-import pandas as pd
-import os
 
-# Directory to store datasets
-DATASET_DIR = "datasets"
+# Define projects
+projects = [
+    {"name": "demo2", "date": "26 Dec 2024", "models": 0, "color": "#6A0DAD"},
+    {"name": "demk", "date": "26 Dec 2024", "models": 0, "color": "#FF0000"},
+    {"name": "project3", "date": "27 Dec 2024", "models": 1, "color": "#1E90FF"},
+    {"name": "project4", "date": "28 Dec 2024", "models": 3, "color": "#32CD32"},
+    {"name": "project5", "date": "29 Dec 2024", "models": 2, "color": "#FFD700"},
+]
 
-# Ensure the directory exists
-os.makedirs(DATASET_DIR, exist_ok=True)
+st.title("My Workspaces")
 
-def save_uploaded_file(uploaded_file):
-    """Save the uploaded file to the dataset directory."""
-    file_path = os.path.join(DATASET_DIR, uploaded_file.name)
-    with open(file_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
-    return file_path
+# Limit columns to 3 per row
+max_columns = 3
+columns = None
 
-def load_existing_datasets():
-    """Load the list of existing datasets."""
-    return [f for f in os.listdir(DATASET_DIR) if f.endswith((".csv", ".xlsx"))]
-
-def load_dataset(file_name):
-    """Load a dataset by file name."""
-    file_path = os.path.join(DATASET_DIR, file_name)
-    if file_name.endswith(".csv"):
-        return pd.read_csv(file_path)
-    elif file_name.endswith(".xlsx"):
-        return pd.read_excel(file_path)
-
-# Streamlit App
-st.title("Multi-Dataset Manager")
-
-# Page Navigation
-page = st.sidebar.radio("Navigation", ["View Datasets", "Add New Dataset"])
-
-if page == "View Datasets":
-    st.header("Your Datasets")
-
-    # Load existing datasets
-    datasets = load_existing_datasets()
+for idx, project in enumerate(projects):
+    if idx % max_columns == 0:  # Create a new row every 3 projects
+        columns = st.columns(max_columns)
     
-    if datasets:
-        selected_file = st.selectbox("Select a dataset to view", datasets)
-        
-        if selected_file:
-            # Display dataset
-            st.subheader(f"Viewing Dataset: {selected_file}")
-            try:
-                df = load_dataset(selected_file)
-                st.write(df)
-                st.write("Summary Statistics:")
-                st.write(df.describe())
-            except Exception as e:
-                st.error(f"Error loading dataset: {e}")
-            
-            # Option to delete dataset
-            if st.button(f"Delete {selected_file}"):
-                os.remove(os.path.join(DATASET_DIR, selected_file))
-                st.success(f"{selected_file} has been deleted.")
-                st.experimental_rerun()
-    else:
-        st.info("No datasets available. Add a new one in the 'Add New Dataset' tab.")
+    with columns[idx % max_columns]:  # Add project to the appropriate column
+        st.markdown(
+    f"""
+    <style>
+    .custom-button {{
+        border-radius: 16px;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 2;
+        box-shadow: 
+            0 0 6px rgba(255, 255, 255, 0.3), 
+            0 0 12px rgba(255, 255, 255, 0.2), 
+            0 0 18px {project['color']}44;
+        color: white;
+        padding: 30px;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px; /* Adds vertical space if wrapping occurs */
 
-elif page == "Add New Dataset":
-    st.header("Add New Dataset")
+        transition: box-shadow 0.3s ease; /* Smooth transition */
+    }}
+    .custom-button:hover {{
+        box-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.6), 
+            0 0 20px rgba(255, 255, 255, 0.5), 
+            0 0 30px {project['color']}88; /* Stronger glow on hover */
+    }}
+    </style>
+    <div class="custom-button" onclick="window.location.href='#';">
+        <h3>{project['name']}</h3>
+        <p>{project['date']}</p>    
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
-    uploaded_file = st.file_uploader("Upload a CSV or Excel file", type=["csv", "xlsx"])
-    if uploaded_file:
-        # Save the uploaded file
-        try:
-            save_uploaded_file(uploaded_file)
-            st.success(f"{uploaded_file.name} has been uploaded successfully!")
-        except Exception as e:
-            st.error(f"Error saving file: {e}")
+
+
+# Add a button to create a new workspace
+st.markdown(
+    """
+    <div style="text-align: center; margin-top: 20px;">
+        <button style="
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        " onclick="window.location.href='#';">+ Create a new workspace</button>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)

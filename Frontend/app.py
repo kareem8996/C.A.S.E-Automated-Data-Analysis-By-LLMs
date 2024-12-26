@@ -3,6 +3,7 @@ from streamlit_cookies_controller import CookieController
 import os
 import pandas as pd
 import requests
+from Requests import databaseRequests
 class MultiPageApp():
     """
     A class to create a multi-page Streamlit application.
@@ -25,7 +26,38 @@ class MultiPageApp():
         self.auth_pages={}
         self.controller=controller
         # st.session_state['cookie_man']=True
-        
+        bg = '''
+        <style>
+        [data-testid="stHeader"] {
+            background-color: rgba(0,0,0,0);
+        }
+        [data-testid="stAppViewContainer"] {
+            background-color: #908d8d;
+            opacity: 1;
+            background-image: radial-gradient(circle at center center, #000000, #908d8d), repeating-radial-gradient(circle at center center, #000000, #000000, 40px, transparent 100px, transparent 40px);
+            background-blend-mode: multiply;
+        }
+        .st-emotion-cache-lr2bj0.eiemyj5 {
+            border-radius: 16px;
+            background: rgba(0,0,0,0.5);
+            z-index: 2;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+        </style>
+        '''
+        st.markdown("""
+                    <style>
+                    [data-testid="stLogo"] {
+                        width: 800;  /* Adjust width as needed */
+                        height: auto;  /* Maintain aspect ratio */
+                    }
+                    </style>
+
+                """, unsafe_allow_html=True) 
+        st.logo(
+            "Static\CASE LOGO.png",
+        )
+        st.markdown(bg,unsafe_allow_html=True)
 
         if 'loggedIn' not in st.session_state:
             st.session_state['loggedIn']=False
@@ -34,15 +66,6 @@ class MultiPageApp():
         if 'signUp_Page' not in st.session_state:
             st.session_state['signUp_Page']=False
         
-        st.markdown("""
-                    <style>
-                    [data-testid="stLogo"] {
-                        width: 350px;  /* Adjust width as needed */
-                        height: auto;  /* Maintain aspect ratio */
-                    }
-                    </style>
-
-                """, unsafe_allow_html=True) 
 
     def add_page(self,directory,title,default=False):
         """
@@ -65,7 +88,7 @@ class MultiPageApp():
         
     def login(self):
         st.session_state['loggedIn']=False
-        pg=st.navigation(self.pages[:3])
+        pg=st.navigation(self.pages[:2])
         pg.run()
 
     def logout(self):
@@ -88,35 +111,29 @@ class MultiPageApp():
         -------
         None
         """
-        st.logo(
-            "Static\CASE LOGO.png",
-        )
+        # st.logo(
+        #     "Static\CASE LOGO.png",
+        # )
         cookies = self.controller.getAll()
         if st.session_state['loggedIn']==False:
             for key in cookies:
                 if key.startswith("user_"):
                     st.session_state['user_id'] = cookies[key]
                     st.session_state['loggedIn']=True
-                    st.toast(f"Welcome back, {get_name(st.session_state.user_id)}!",icon='🎉')
+                    st.toast(f"Welcome back, {databaseRequests.get_name(st.session_state.user_id)}!",icon='🎉')
                     break
                 
 
         if st.session_state['loggedIn']==False:
             self.login()
         else:
-            st.sidebar.title(f"Hello {get_name(st.session_state.user_id)}")
-            response=requests.post('http://41.33.183.2:4043/survey_exist',json={'user_id':str(st.session_state['user_id'])})
-            print(response.json())
-            if not response.json()['data']:
-                    pg=st.navigation([self.pages[-1]])
-                    pg.run()
-            else:
-                clicked=st.sidebar.button("Logout",on_click=self.logout)
-                if not clicked:
-                    placeholder=st.sidebar.empty()  
-                    placeholder.selectbox("Market", ["USA","KSA"], key="market")
-                    pg=st.navigation([self.pages[0],self.pages[3],self.pages[4],self.pages[5],self.pages[6]])
-                    pg.run()
+            st.sidebar.title(f"Hello {databaseRequests.get_name(st.session_state.user_id)}")    
+            pg=st.navigation([self.pages[-1]])
+            pg.run()
+            clicked=st.sidebar.button("Logout",on_click=self.logout)
+            if not clicked:
+                pg=st.navigation(self.pages[2:])
+                pg.run()
 
             
 if __name__=='__main__':
@@ -127,6 +144,7 @@ if __name__=='__main__':
     full_app.add_page('Displays/Login.py',title='Login')
     full_app.add_page('Displays/Signup.py',title='Signup')
     full_app.add_page("Displays/Datasets.py",title='My Projects') 
+    full_app.add_page("Displays/About.py",title='About') 
     full_app.run()
 
 

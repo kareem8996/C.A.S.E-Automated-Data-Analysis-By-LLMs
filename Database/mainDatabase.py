@@ -3,7 +3,7 @@ import os
 import bcrypt
 import csv
 
-user_directory='Database\Users\users.csv'
+user_directory=r'Database\Users\users.csv' #temp until we create a real database
 def check_login(username,password):
     df=pd.read_csv(user_directory)
     row=df[(df['username'] == username)]
