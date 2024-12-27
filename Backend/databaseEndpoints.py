@@ -4,9 +4,10 @@ import os
 # Add the parent directory to the sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from fastapi import APIRouter
+from fastapi import APIRouter,Form,File,UploadFile
 from Database import mainDatabase
 from dataItems import SignUpRequest,LoginRequest
+import json
 db_router = APIRouter()
 
 
@@ -102,3 +103,27 @@ async def get_email(user_id: str):
             Username
     """
     return {'data':mainDatabase.fetch_email(user_id)}
+
+
+
+@db_router.post("/createProject")
+async def upload_file(file: UploadFile = File(...), user_id: str = Form(...), name: str = Form(...)):
+    """
+    API endpoint to receive and save uploaded files.
+    """
+    mainDatabase.create_project(name,user_id,file)
+
+@db_router.get("/readProjects/{user_id}")
+async def readProjects(user_id:str):
+    """
+    API endpoint to receive and save uploaded files.
+    """
+    return json.dumps({'data':mainDatabase.read_projects(user_id)})
+
+
+@db_router.get("/projectDetails/{project_id}")
+async def getProject(project_id:str):
+    """
+    API endpoint to receive and save uploaded files.
+    """
+    return json.dumps({'data':mainDatabase.get_project(project_id)})

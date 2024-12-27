@@ -51,7 +51,7 @@ class Login:
         Renders the login page interface with input fields for username and password,
         and a login button.
         """
-        st.markdown(f"<h1 style='text-align: center; font-size: 60px;'>Welcome to C.A.S.E</h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='text-align: center; font-size: 80px;'>Welcome to C.A.S.E</h1>", unsafe_allow_html=True)
         cols=st.columns(3)
         with cols[1]:
             st.info("NOTE: When Logging in, please write your responses in your own words. Using suggested text can sometimes lead to unexpected errors in Streamlit.")

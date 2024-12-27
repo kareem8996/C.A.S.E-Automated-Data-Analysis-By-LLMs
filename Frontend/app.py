@@ -25,6 +25,7 @@ class MultiPageApp():
         self.pages=[]
         self.auth_pages={}
         self.controller=controller
+        
         # st.session_state['cookie_man']=True
         bg = '''
         <style>
@@ -32,7 +33,7 @@ class MultiPageApp():
             background-color: rgba(0,0,0,0);
         }
         [data-testid="stAppViewContainer"] {
-            background-color: #908d8d;
+             background-color: #908d8d;
             opacity: 1;
             background-image: radial-gradient(circle at center center, #000000, #908d8d), repeating-radial-gradient(circle at center center, #000000, #000000, 40px, transparent 100px, transparent 40px);
             background-blend-mode: multiply;
@@ -49,9 +50,7 @@ class MultiPageApp():
                     <style>
                     [data-testid="stLogo"] {
                         width: 800;  /* Adjust width as needed */
-                        height: auto;  /* Maintain aspect ratio */
-                    }
-                    </style>
+                        height: auto;  /* Maintain aspect ratio *
 
                 """, unsafe_allow_html=True) 
         st.logo(
@@ -143,7 +142,7 @@ if __name__=='__main__':
     # full_app.add_page("pages/About/about.py", title='Home')
     full_app.add_page('Displays/Login.py',title='Login')
     full_app.add_page('Displays/Signup.py',title='Signup')
-    full_app.add_page("Displays/Datasets.py",title='My Projects') 
+    full_app.add_page("Displays/Projects.py",title='Projects') 
     full_app.add_page("Displays/About.py",title='About') 
     full_app.run()
 

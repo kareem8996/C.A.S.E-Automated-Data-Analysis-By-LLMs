@@ -55,7 +55,7 @@ class SignUp:
         Renders the sign-up page interface with input fields for first name, last name, username, 
         password, email, and a sign-up button.
         """
-        st.markdown(f"<h1 style='text-align: center; font-size: 60px;'>Welcome to C.A.S.E</h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='text-align: center; font-size: 80px;'>Welcome to C.A.S.E</h1>", unsafe_allow_html=True)
         cols=st.columns(3)
         with cols[1]:
             st.info("NOTE: When signing up, please write your responses in your own words. Using suggested text can sometimes lead to unexpected errors in Streamlit.")

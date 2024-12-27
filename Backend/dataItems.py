@@ -13,3 +13,8 @@ class SignUpRequest(BaseModel):
     username: str
     password: str
 
+
+class CreateProject(BaseModel):
+    name:str
+    user_id: str
+    

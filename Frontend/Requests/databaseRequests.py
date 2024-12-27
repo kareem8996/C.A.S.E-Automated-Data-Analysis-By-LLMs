@@ -1,5 +1,6 @@
 import requests
 import streamlit as st
+import json
 
 url = 'http://127.0.0.1:8000'
 def check_login(username,password):
@@ -83,3 +84,26 @@ def get_name(user_id):
     """
     response=requests.get(url+f"/get_name/{user_id}")
     return response.json()['data']
+
+
+def create_project(user_id,name,uploaded_file):
+        print(user_id,name)
+        files = {"file": uploaded_file}
+        data={
+             'user_id': str(user_id),
+             'name': name
+        }
+
+        # Send the POST request
+        response = requests.post(url+'/createProject', files=files,data=data)
+
+def read_projects(user_id):
+     response=requests.get(url+f'/readProjects/{str(user_id)}')
+     projects=json.loads(response.json())['data']
+     return projects
+
+def get_project_details(project_id):
+     response=requests.get(url+f'/projectDetails/{str(project_id)}')
+     project=json.loads(response.json())['data']
+     return project
+
