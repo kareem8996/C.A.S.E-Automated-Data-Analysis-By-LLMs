@@ -1,5 +1,14 @@
-import fastapi
+from fastapi import FastAPI, APIRouter
+from databaseEndpoints import db_router
+from visualizationEndpoints import viz_router
+import uvicorn
 
-router=fastapi.APIRouter()
+app = FastAPI()
 
-print("Hello World")
+app.include_router(db_router, prefix="")
+app.include_router(viz_router, prefix="")
+
+
+if __name__ == "__main__":
+    uvicorn.run("mainRouter:app", host="127.0.0.1", port=8000,reload=True)
+    
