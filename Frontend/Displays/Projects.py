@@ -1,13 +1,16 @@
 import sys
 import os
 import pandas as pd
-
+from io import StringIO
 
 # Add the parent directory to the sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import streamlit as st
-from Requests import databaseRequests
+from Requests import databaseRequests,visualizationRequests
+from Objects import Dashboard,Plot
+from streamlit_elements import elements,event,sync,lazy
+from types import SimpleNamespace
 
 class Projects:
 
@@ -16,6 +19,11 @@ class Projects:
             st.session_state["newProject"] = False
             st.session_state['Project']=None
             st.session_state['Visualization']=None
+            st.session_state['viz_data']=[]
+
+            st.session_state['DASHBOARD_WIDTH'] = 12  # Full width of the dashboard in grid units
+            st.session_state['PLOT_WIDTH'] = 6  # Full width of the dashboard in grid units
+            st.session_state['PLOT_HEIGHT'] = 4  # Full width of the dashboard in grid units
         
         self.projects=databaseRequests.read_projects(st.session_state.user_id)
         self.max_columns = 3
@@ -23,17 +31,29 @@ class Projects:
     
     def new_project_clicked(self):
         st.session_state["newProject"] = True
+    
     def project_clicked(self,project_id):
         st.session_state['Project']=str(project_id)
+  
     def backtooverview(self):
         st.session_state['Project']=None
+        st.session_state['Visualization']=None
+        st.session_state["newProject"] = False
+        st.session_state['Project']=None
+        st.session_state['Visualization']=None
+        st.session_state['viz_data']=[]
+        if 'board' in st.session_state:
+            st.session_state['board']=None
+        if "w"  in st.session_state:
+            del st.session_state['w']
+        
     
     def visualizationShown(self):
         st.session_state['Visualization']=True
 
     def selectedProject(self):
         project=databaseRequests.get_project_details(st.session_state['Project'])
-        with st.columns(21)[-1]:
+        with st.columns(19)[-1]:
             st.markdown("""
                 <style>
                 .element-container:has(#button-back) + div button {
@@ -94,7 +114,7 @@ class Projects:
         tabs=st.tabs(['Raw Dataset','Processed Dataset','Insights','Visualizations','AutoML'])
         with tabs[0]:
             with st.container(border=True):
-                st.dataframe(pd.read_json(project['raw_dataset']),use_container_width=True,)
+                st.dataframe(pd.read_json(StringIO(project['raw_dataset'])),use_container_width=True,)
         
         with tabs[3]:
             self.visualizationsPage()
@@ -212,13 +232,11 @@ class Projects:
                                 st.toast('Please choose a unique name for the project')
                         else:
                             st.toast('Please upload a dataset')
-    def projectsPage(self):
-        if not st.session_state['Project']:
-            self.projectOverview()
-        else:
-            st.session_state["newProject"] = False
-            self.selectedProject()
-            
+    
+    def create(self,fig_dict):
+        plot=Plot.Plots(st.session_state.board, 12,  7, w=5, h=7, minW=2, minH=4,fig=fig_dict)
+        return plot
+      
     def visualizationsPage(self):
         cols=st.columns(3)
         with cols[1]:
@@ -262,8 +280,35 @@ class Projects:
             st.markdown('<span id="button-after"></span>', unsafe_allow_html=True)
             if not st.session_state['Visualization']:
                 st.button("Begin Generation",on_click=self.visualizationShown)
+            
+        if st.session_state['Visualization']:
+            if "w" not in st.session_state:
+                st.session_state.board = Dashboard.Dashboard()
+                w = SimpleNamespace(
+                    visualizations=[]
+                )
+                st.session_state.w = w
+
             else:
-                pass
+                w = st.session_state.w
+            with elements("demo"):
+                event.Hotkey("ctrl+s", sync(), bindInputs=True, overrideDefault=True)
+                vizs=visualizationRequests.fetch_visualizations(1)
+                for i in vizs:
+                    w.visualizations.append(self.create((i)))
+                
+
+                with st.session_state.board(rowHeight=57):
+                    for i in w.visualizations:
+                        i()
+
+                                                      
+    def projectsPage(self):
+        if not st.session_state['Project']:
+            self.projectOverview()
+        else:
+            st.session_state["newProject"] = False
+            self.selectedProject()
 
 projects=Projects()
 projects.projectsPage()

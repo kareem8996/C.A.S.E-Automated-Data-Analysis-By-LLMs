@@ -1,16 +1,21 @@
 import plotly.express as px
 import pandas as pd
 import numpy as np
-from loggerModule import setup_logging
 import seaborn as sns
+from . import loggerModule
+import sys
+import os
+import pandas as pd
+from io import StringIO
 
-# Loading sample datasets 
-iris = sns.load_dataset('iris')
-Tips = px.data.tips()
+# Add the parent directory to the sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-logger=setup_logging()
+from Database import mainDatabase
 
-def line_plot(x, y, color=None, labels=None, title=None,width=800, height=600):
+logger=loggerModule.setup_logging()
+
+def line_plot(x, y, color=None, labels=None, title=None,width=800, height=600,project_id=None):
     """
     Generates a line plot using Plotly Express.
 
@@ -26,10 +31,10 @@ def line_plot(x, y, color=None, labels=None, title=None,width=800, height=600):
     - fig (Figure): A Plotly Figure object that can be displayed.
     """
     try:
-        data = iris
+        df=mainDatabase.fetch_dataset(project_id)
         # Check if provided column names exist in the dataset
         for col in [x, y, color]:
-            if col and col not in iris.columns:
+            if col and col not in df.columns:
                 raise ValueError(f"The specified '{col}' column is not found in the dataset.")
         
         # check if the specified columns are the same
@@ -38,20 +43,18 @@ def line_plot(x, y, color=None, labels=None, title=None,width=800, height=600):
         
         # drop rows with missing values in the relevant columns
         relevant_columns = [col for col in [x, y, color] if col is not None]
-        data = data.dropna(subset=relevant_columns)
+        df = df.dropna(subset=relevant_columns)
 
         fig = px.line(
-            data_frame=iris,
+            data_frame=df,
             x=x,
             y=y,
             color=color,
             symbol=color,
             labels=labels,
-            color_discrete_sequence=px.colors.qualitative.set1,
+            color_discrete_sequence=px.colors.qualitative.Set1,
             title=title,
             template="plotly_dark",
-            width=width,
-            height=height
         )
         return fig
     except Exception as e:
@@ -60,8 +63,7 @@ def line_plot(x, y, color=None, labels=None, title=None,width=800, height=600):
 
 def scatter_plot(x, y, color=None, labels=None, 
                 marginal_x=None, marginal_y=None, trendline=None, 
-                trendline_scope=None, title=None, 
-                width=800, height=600):
+                trendline_scope=None, title=None,project_id=None):
     """
     Generates a scatter plot using Plotly Express.
 
@@ -82,10 +84,10 @@ def scatter_plot(x, y, color=None, labels=None,
     - fig (Figure): A Plotly Figure object that can be displayed.
     """
     try:
-        data = iris
+        data=mainDatabase.fetch_dataset(project_id)
         # Check if provided column names exist in the dataset
         for col in [x, y, color]:
-            if col and col not in iris.columns:
+            if col and col not in data.columns:
                 raise ValueError(f"The specified '{col}' column is not found in the dataset.")
                 
         # check if the specified columns are the same
@@ -97,21 +99,19 @@ def scatter_plot(x, y, color=None, labels=None,
         data = data.dropna(subset=relevant_columns)
 
         fig = px.scatter(
-            data_frame=iris,
+            data_frame=data,
             x=x,
             y=y,
             color=color,
             symbol=color,
             labels=labels,
-            color_discrete_sequence=px.colors.qualitative.set1,
+            color_discrete_sequence=px.colors.qualitative.Set1,
             marginal_x=marginal_x,
             marginal_y=marginal_y,
             trendline=trendline,
             trendline_scope=trendline_scope,
             title=title,
             template='plotly_dark',
-            width=width,
-            height=height
         )
         return fig
     except Exception as e:
@@ -119,7 +119,7 @@ def scatter_plot(x, y, color=None, labels=None,
 
 
 def bubble_plot(x, y, color=None, size=None, labels=None, 
-                title=None, width=800, height=600): 
+                title=None, width=800, height=600,project_id=None): 
     """
     Generates a bubble plot using Plotly Express.
 
@@ -141,10 +141,11 @@ def bubble_plot(x, y, color=None, size=None, labels=None,
     - fig (Figure): A Plotly Figure object that can be displayed.
     """
     try:
-        data = iris
+        df=mainDatabase.fetch_dataset(project_id)
+
         # Check if provided column names exist in the dataset
         for col in [x, y, color]:
-            if col and col not in iris.columns:
+            if col and col not in df.columns:
                 raise ValueError(f"The specified '{col}' column is not found in the dataset.")
             
         #converting passed parameter size into integer
@@ -160,25 +161,23 @@ def bubble_plot(x, y, color=None, size=None, labels=None,
         data = data.dropna(subset=relevant_columns)
 
         fig = px.scatter(
-            data_frame=iris,
+            data_frame=df,
             x=x,
             y=y,
             color=color,
             symbol=color,
             size=size,
             labels=labels,
-            color_discrete_sequence=px.colors.qualitative.set1,
+            color_discrete_sequence=px.colors.qualitative.Set1,
             title=title,
             template="plotly_dark",
-            width=width,
-            height=height
         )
         return fig
     except Exception as e:
         print(f"Error creating bubble plot: {e}")
 
 
-def swarm_plot(x,y,color=None,labels=None,stripmode="group",title=None,width=800,height=600):
+def swarm_plot(x,y,color=None,labels=None,stripmode="group",title=None,project_id=None):
     """
     Creates a swarm plot (approximated using scatter plot) using Plotly Express.
 
@@ -196,10 +195,10 @@ def swarm_plot(x,y,color=None,labels=None,stripmode="group",title=None,width=800
         fig: A Plotly figure object.
     """
     try:
-        data = Tips
+        df=mainDatabase.fetch_dataset(project_id)
         # Check if provided column names exist in the dataset
         for col in [x, y, color]:
-            if col and col not in iris.columns:
+            if col and col not in df.columns:
                 raise ValueError(f"The specified '{col}' column is not found in the dataset.")
         
         # check if the specified columns are the same
@@ -211,7 +210,7 @@ def swarm_plot(x,y,color=None,labels=None,stripmode="group",title=None,width=800
         data = data.dropna(subset=relevant_columns)
 
         fig = px.strip(
-            data_frame=Tips,
+            data_frame=df,
             x=x, 
             y=y, 
             color=color,
@@ -222,15 +221,13 @@ def swarm_plot(x,y,color=None,labels=None,stripmode="group",title=None,width=800
             stripmode=stripmode, 
             title=title, 
             template="plotly_dark", 
-            width=width, 
-            height=height 
 )
         return fig
     except Exception as e:
         print(f"Error creating swarm plot: {e}")
 
 
-def grouped_bar_plot(x, y, color=None, title="Grouped Bar Plot"):
+def grouped_bar_plot(x, y, color=None, title="Grouped Bar Plot",project_id=None):
     """
     Creates a grouped bar plot using Plotly Express.
 
@@ -244,10 +241,11 @@ def grouped_bar_plot(x, y, color=None, title="Grouped Bar Plot"):
         fig: A Plotly figure object.
     """
     try:
-        data = Tips
+        df=mainDatabase.fetch_dataset(project_id)
+
         # Check if provided column names exist in the dataset
         for col in [x, y, color]:
-            if col and col not in iris.columns:
+            if col and col not in df.columns:
                 raise ValueError(f"The specified '{col}' column is not found in the dataset.")
 
         # check if the specified columns are the same
@@ -259,7 +257,7 @@ def grouped_bar_plot(x, y, color=None, title="Grouped Bar Plot"):
         data = data.dropna(subset=relevant_columns)
 
         fig = px.bar(
-            Tips, 
+            df, 
             x=x, 
             y=y, 
             color=color, 
@@ -270,9 +268,7 @@ def grouped_bar_plot(x, y, color=None, title="Grouped Bar Plot"):
     except Exception as e:
         print(f"Error creating grouped bar plot: {e}")
 
-data=px.data.iris() # temp variable until we read from db
-
-def create_pairplot(color=None, dimensions=None, diagonal_visible=True,title='Pair Plot'):
+def create_pairplot(color=None, dimensions=None, diagonal_visible=True,title='Pair Plot',project_id=None):
     """
     Create a pairplot using Plotly.
 
@@ -285,7 +281,8 @@ def create_pairplot(color=None, dimensions=None, diagonal_visible=True,title='Pa
     fig: Plotly figure object representing the pairplot.
     """
     try:
-        df = px.data.iris()
+        df=mainDatabase.fetch_dataset(project_id)
+
         # Check if DataFrame has more than one column
         if df.shape[1] < 2:
             raise ValueError("DataFrame must have at least two columns for a pairplot.")
@@ -308,7 +305,7 @@ def create_pairplot(color=None, dimensions=None, diagonal_visible=True,title='Pa
         logger.error(f"An error occurred: {e}")
 
 
-def create_radar_chart( category_column, value_columns=None, title="Radar Chart", color_column=None):
+def create_radar_chart( category_column, value_columns=None, title="Radar Chart", color_column=None,project_id=None):
     """
     Generates a radar chart using Plotly Express.
 
@@ -325,31 +322,26 @@ def create_radar_chart( category_column, value_columns=None, title="Radar Chart"
         plotly.graph_objects.Figure: The generated radar chart.
     """
     # Example dataset
-    data = pd.DataFrame({
-        "Category": ["A", "B", "C"],
-        "Metric 1": [10, 20, 30],
-        "Metric 2": [40, 50, 60],
-        "Metric 3": [70, 80, 90],
-        "Group": ["X", "Y", "X"]
-    })
+    df=mainDatabase.fetch_dataset(project_id)
+
     try:
-        if category_column not in data.columns:
+        if category_column not in df.columns:
             raise ValueError(f"Category column '{category_column}' is not in the DataFrame.")
 
         
         # Default value columns to all numeric columns except the category column
         if value_columns is None:
-            value_columns = data.select_dtypes(include=['number']).columns.difference([category_column]).tolist()
+            value_columns = df.select_dtypes(include=['number']).columns.difference([category_column]).tolist()
         
         if not value_columns:
             raise ValueError("No numerical columns found for plotting.")
         
         # Check if the color column exists
-        if color_column and color_column not in data.columns:
+        if color_column and color_column not in df.columns:
             raise ValueError(f"Color column '{color_column}' is not in the DataFrame.")
         
         # Melt the data for radar chart format
-        melted_data = data.melt(
+        melted_data = df.melt(
             id_vars=[category_column] + ([color_column] if color_column else []),
             value_vars=value_columns,
             var_name="Metric",
@@ -378,7 +370,7 @@ def create_radar_chart( category_column, value_columns=None, title="Radar Chart"
 
 
 
-def create_treemap(path_columns, value_column=None, color_column=None, title="Treemap", color_scale="Viridis"):
+def create_treemap(path_columns, value_column=None, color_column=None, title="Treemap", color_scale="Viridis",project_id=None):
     """
     Generates a treemap using Plotly Express.
 
@@ -394,8 +386,9 @@ def create_treemap(path_columns, value_column=None, color_column=None, title="Tr
         plotly.graph_objects.Figure: The generated treemap.
     """
     try:  
+        df=mainDatabase.fetch_dataset(project_id)
 
-        valid_path_columns = [col for col in path_columns if col in data.columns]
+        valid_path_columns = [col for col in path_columns if col in df.columns]
         if len(valid_path_columns) < len(path_columns):
             missing_cols = set(path_columns) - set(valid_path_columns)
             print(f"Warning: The following columns are missing and will be removed: {missing_cols}")
@@ -406,26 +399,26 @@ def create_treemap(path_columns, value_column=None, color_column=None, title="Tr
             return None
         
         # Check value and color columns
-        if value_column and value_column not in data.columns:
+        if value_column and value_column not in df.columns:
             print(f"Warning: Value column '{value_column}' is not in the DataFrame. Ignoring it.")
             value_column = None
         
-        if color_column and color_column not in data.columns:
+        if color_column and color_column not in df.columns:
             print(f"Warning: Color column '{color_column}' is not in the DataFrame. Ignoring it.")
             color_column = None
         
         # Handle missing values in relevant columns
         all_columns = valid_path_columns + [value_column, color_column]
         for col in filter(None, all_columns):  # Skip None columns
-            if col in data.columns:
-                data[col] = data[col].fillna(None)
+            if col in df.columns:
+                df[col] = df[col].fillna(None)
         
 
-        data["all"] = "all" # in order to have a single root node
+        df["all"] = "all" # in order to have a single root node
 
         # Create the treemap
         fig = px.treemap(
-            data,
+            df,
             path=valid_path_columns,
             values=value_column,
             color=color_column,
@@ -448,7 +441,7 @@ def create_treemap(path_columns, value_column=None, color_column=None, title="Tr
 
 
 
-def create_correlation_heatmap(columns=None, color_scale="Viridis", title="Correlation Heatmap", show_values=True):
+def create_correlation_heatmap(columns=None, color_scale="Viridis", title="Correlation Heatmap", show_values=True,project_id=None):
     """
     Generates a heatmap of correlations between numerical columns in the dataset.
 
@@ -463,8 +456,10 @@ def create_correlation_heatmap(columns=None, color_scale="Viridis", title="Corre
         plotly.graph_objects.Figure: The generated correlation heatmap.
     """
     try:
+        df=mainDatabase.fetch_dataset(project_id)
+
         # Filter for numerical columns
-        numerical_data = data.select_dtypes(include=["number"])
+        numerical_data = df.select_dtypes(include=["number"])
 
         # Use specified columns if provided
         if columns:
@@ -504,7 +499,6 @@ def create_correlation_heatmap(columns=None, color_scale="Viridis", title="Corre
 
 
 def create_faceted_bar_chart(
-    data,
     x,
     y,
     color=None,
@@ -512,6 +506,7 @@ def create_faceted_bar_chart(
     facet_row=None,
     facet_col=None,
     title="Faceted Bar Chart",
+    project_id=None
 ):
     """
     Generates a faceted bar chart using Plotly Express with null value handling.
@@ -536,27 +531,30 @@ def create_faceted_bar_chart(
     try:
         # Null handling
         # Drop rows with nulls in relevant columns
+        df=mainDatabase.fetch_dataset(project_id)
+
         relevant_columns = [col for col in [x, y, color, facet_row, facet_col] if col]
-        data = data.dropna(subset=relevant_columns)
+        df = df.dropna(subset=relevant_columns)
 
         # Ensure specified columns exist
         required_columns = [x, y, color, facet_row, facet_col]
         for col in required_columns:
-            if col and col not in data.columns:
+            if col and col not in df.columns:
                 print(f"Warning: Column '{col}' not found in data. Ignoring it.")
                 if col == x or col == y:
                     raise ValueError(f"Essential column '{col}' is missing. Cannot create chart.")
 
         # Create the faceted bar chart
         fig = px.bar(
-            data,
+            df,
             x=x,
             y=y,
             color=color,
             barmode=barmode,
             facet_row=facet_row,
             facet_col=facet_col,
-            title=title
+            title=title,
+            
         )
 
         # Update layout for better aesthetics
@@ -578,7 +576,7 @@ def create_faceted_bar_chart(
         logger.error(f"An unexpected error occurred: {e}")
         return None
     
-def create_histogram(data, x, color=None, x_label=None, y_label=None):
+def create_histogram(x, color=None, x_label=None, y_label=None,project_id=None):
     """
     Create a histogram using Plotly Express.
     
@@ -593,12 +591,14 @@ def create_histogram(data, x, color=None, x_label=None, y_label=None):
         fig (plotly.graph_objs._figure.Figure): The histogram figure object.
     """
     try:
+        df=mainDatabase.fetch_dataset(project_id)
+
         # Check if the x column exists in the data
-        if x not in data.columns:
+        if x not in df.columns:
             raise ValueError(f"Column '{x}' not found in the dataset.")
 
         # Create the histogram
-        fig = px.histogram(data, x=x, color=color) 
+        fig = px.histogram(df, x=x, color=color) 
         return fig
     except Exception as e:
         #logger.error(f"An error occurred while creating the histogram: {e}")
@@ -606,7 +606,7 @@ def create_histogram(data, x, color=None, x_label=None, y_label=None):
         
         
         
-def create_pie_chart(data, values, names, color=None, title=None):
+def create_pie_chart(values, names, color=None, title=None,project_id=None):
     """
     Create a pie chart using Plotly Express.
 
@@ -621,21 +621,23 @@ def create_pie_chart(data, values, names, color=None, title=None):
         fig (plotly.graph_objs._figure.Figure): The pie chart figure object.
     """
     try:
+        df=mainDatabase.fetch_dataset(project_id)
+
         # Check if the values and names columns exist in the data
-        if values not in data.columns:
+        if values not in df.columns:
             raise ValueError(f"Column '{values}' not found in the dataset.")
-        if names not in data.columns:
+        if names not in df.columns:
             raise ValueError(f"Column '{names}' not found in the dataset.")
 
         # Create the pie chart
-        fig = px.pie(data, values=values, names=names, color=color, title=title)
+        fig = px.pie(df, values=values, names=names, color=color, title=title)
         return fig
     except Exception as e:
         print(f"An error occurred while creating the pie chart: {e}")
         
         
         
-def create_area_chart(data, x, y, color=None, x_label=None, y_label=None, title=None):
+def create_area_chart(x, y, color=None, x_label=None, y_label=None, title=None,project_id=None):
     """
     Create an area chart using Plotly Express.
 
@@ -652,20 +654,22 @@ def create_area_chart(data, x, y, color=None, x_label=None, y_label=None, title=
         fig (plotly.graph_objs._figure.Figure): The area chart figure object.
     """
     try:
+        df=mainDatabase.fetch_dataset(project_id)
+
         # Check if the x and y columns exist in the data
-        if x not in data.columns:
+        if x not in df.columns:
             raise ValueError(f"Column '{x}' not found in the dataset.")
-        if y not in data.columns:
+        if y not in df.columns:
             raise ValueError(f"Column '{y}' not found in the dataset.")
 
         # Create the area chart
-        fig = px.area(data, x=x, y=y, color=color, title=title, labels={'x': x_label, 'y': y_label})
+        fig = px.area(df, x=x, y=y, color=color, title=title, labels={'x': x_label, 'y': y_label})
         return fig
     except Exception as e:
         print(f"Error creating area chart: {e}")
         
         
-def create_boxplot(data, x=None, y=None, color=None, x_label=None, y_label=None):
+def create_boxplot(x=None, y=None, color=None, x_label=None, y_label=None,project_id=None):
     """
     Create a box plot using Plotly Express.
     
@@ -681,20 +685,22 @@ def create_boxplot(data, x=None, y=None, color=None, x_label=None, y_label=None)
         fig (plotly.graph_objs._figure.Figure): The box plot figure object.
     """
     try:
+        df=mainDatabase.fetch_dataset(project_id)
+
         # Check if y column exists in the data
-        if y not in data.columns:
+        if y not in df.columns:
             raise ValueError(f"Column '{y}' not found in the dataset.")
         
         # Check if x column exists (if provided)
-        if x and x not in data.columns:
+        if x and x not in df.columns:
             raise ValueError(f"Column '{x}' not found in the dataset.")
         
         # Check if color column exists (if provided)
-        if color and color not in data.columns:
+        if color and color not in df.columns:
             raise ValueError(f"Column '{color}' not found in the dataset.")
 
         # Create the box plot
-        fig = px.box(data, x=x, y=y, color=color)
+        fig = px.box(df, x=x, y=y, color=color)
         
         # Update axis labels if provided
         if x_label:
@@ -706,7 +712,7 @@ def create_boxplot(data, x=None, y=None, color=None, x_label=None, y_label=None)
         print(f"Error: {e}")
         
         
-def create_violin_plot(data, x=None, y=None, color=None, points=None, hover_data=None, x_label=None, y_label=None):
+def create_violin_plot(x=None, y=None, color=None, points=None, hover_data=None, x_label=None, y_label=None,project_id=None):
     """
     Create a violin plot using Plotly Express.
     
@@ -724,20 +730,22 @@ def create_violin_plot(data, x=None, y=None, color=None, points=None, hover_data
         fig (plotly.graph_objs._figure.Figure): The violin plot figure object.
     """
     try:
+        df=mainDatabase.fetch_dataset(project_id)
+
         # Check if y column exists in the data
-        if y not in data.columns:
+        if y not in df.columns:
             raise ValueError(f"Column '{y}' not found in the dataset.")
         
         # Check if x column exists (if provided)
-        if x and x not in data.columns:
+        if x and x not in df.columns:
             raise ValueError(f"Column '{x}' not found in the dataset.")
         
         # Check if color column exists (if provided)
-        if color and color not in data.columns:
+        if color and color not in df.columns:
             raise ValueError(f"Column '{color}' not found in the dataset.")
 
         # Create the violin plot
-        fig = px.violin(data, x=x, y=y, color=color, points=points, hover_data=hover_data)
+        fig = px.violin(df, x=x, y=y, color=color, points=points, hover_data=hover_data)
         
         # Update axis labels if provided
         if x_label:

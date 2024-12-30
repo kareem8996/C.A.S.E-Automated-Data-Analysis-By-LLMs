@@ -131,3 +131,14 @@ def get_project(project_id):
         project_details['processed_dataset'] = None
     
     return project_details
+
+
+def fetch_dataset(project_id):
+    raw_dataset_path = os.path.join(raw_datasets_directory, f"raw_dataset_{project_id}.csv")
+    if os.path.exists(raw_dataset_path):
+        raw_dataset = pd.read_csv(raw_dataset_path)
+        return raw_dataset
+    else:
+        return None
+    
+
