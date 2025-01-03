@@ -33,10 +33,11 @@ class MultiPageApp():
             background-color: rgba(0,0,0,0);
         }
         [data-testid="stAppViewContainer"] {
-             background-color: #908d8d;
+            background-color: #908d8d;
             opacity: 1;
             background-image: radial-gradient(circle at center center, #000000, #908d8d), repeating-radial-gradient(circle at center center, #000000, #000000, 40px, transparent 100px, transparent 40px);
             background-blend-mode: multiply;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.5);
         }
         .st-emotion-cache-lr2bj0.eiemyj5 {
             border-radius: 16px;

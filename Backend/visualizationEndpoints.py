@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from fastapi import APIRouter
-from Agents.codeGeneration import mainFunctions
+from Agents.codeGeneration import maintools
 import json
 import numpy as np
 import time
@@ -39,11 +39,11 @@ async def visualization(project_id:str):
     Returns:
         dict: JSON with visualization data.
     """
-    fig2 = mainFunctions.scatter_plot(x='Fare', y='Age',project_id=project_id)
+    fig2 = maintools.scatter_plot(x='Fare', y='Age',project_id=project_id)
     fig2 = make_serializable(fig2.to_dict())
     
     # Visualization 3
-    fig3 = mainFunctions.line_plot(x='Fare', y='Age',project_id=project_id)
+    fig3 = maintools.line_plot(x='Fare', y='Age',project_id=project_id)
     fig3 = make_serializable(fig3.to_dict())
     # time.sleep(10)
     return {'visualizations':[fig2, fig3]}
