@@ -2,19 +2,21 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 import seaborn as sns
-from . import loggerModule
 import sys
 import os
 import pandas as pd
-from io import StringIO
+from langchain_core.tools import tool
+from langchain_core.messages import ToolMessage
+import json
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-# Add the parent directory to the sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from Agents import loggerModule
 
 from Database import mainDatabase
 
 logger=loggerModule.setup_logging()
 
+@tool
 def line_plot(x, y, color=None, labels=None, title=None,width=800, height=600,project_id=None):
     """
     Generates a line plot using Plotly Express.
@@ -60,7 +62,7 @@ def line_plot(x, y, color=None, labels=None, title=None,width=800, height=600,pr
     except Exception as e:
         print(f"Error creating line plot: {e}")
 
-
+@tool
 def scatter_plot(x, y, color=None, labels=None, 
                 marginal_x=None, marginal_y=None, trendline=None, 
                 trendline_scope=None, title=None,project_id=None):
@@ -117,7 +119,7 @@ def scatter_plot(x, y, color=None, labels=None,
     except Exception as e:
         print(f"Error creating scatter plot: {e}")
 
-
+@tool
 def bubble_plot(x, y, color=None, size=None, labels=None, 
                 title=None, width=800, height=600,project_id=None): 
     """
@@ -176,7 +178,7 @@ def bubble_plot(x, y, color=None, size=None, labels=None,
     except Exception as e:
         print(f"Error creating bubble plot: {e}")
 
-
+@tool
 def swarm_plot(x,y,color=None,labels=None,stripmode="group",title=None,project_id=None):
     """
     Creates a swarm plot (approximated using scatter plot) using Plotly Express.
@@ -226,7 +228,7 @@ def swarm_plot(x,y,color=None,labels=None,stripmode="group",title=None,project_i
     except Exception as e:
         print(f"Error creating swarm plot: {e}")
 
-
+@tool
 def grouped_bar_plot(x, y, color=None, title="Grouped Bar Plot",project_id=None):
     """
     Creates a grouped bar plot using Plotly Express.
@@ -268,6 +270,7 @@ def grouped_bar_plot(x, y, color=None, title="Grouped Bar Plot",project_id=None)
     except Exception as e:
         print(f"Error creating grouped bar plot: {e}")
 
+@tool
 def create_pairplot(color=None, dimensions=None, diagonal_visible=True,title='Pair Plot',project_id=None):
     """
     Create a pairplot using Plotly.
@@ -304,7 +307,7 @@ def create_pairplot(color=None, dimensions=None, diagonal_visible=True,title='Pa
     except Exception as e:
         logger.error(f"An error occurred: {e}")
 
-
+@tool
 def create_radar_chart( category_column, value_columns=None, title="Radar Chart", color_column=None,project_id=None):
     """
     Generates a radar chart using Plotly Express.
@@ -369,7 +372,7 @@ def create_radar_chart( category_column, value_columns=None, title="Radar Chart"
         return None
 
 
-
+@tool
 def create_treemap(path_columns, value_column=None, color_column=None, title="Treemap", color_scale="Viridis",project_id=None):
     """
     Generates a treemap using Plotly Express.
@@ -440,7 +443,7 @@ def create_treemap(path_columns, value_column=None, color_column=None, title="Tr
 
 
 
-
+@tool
 def create_correlation_heatmap(columns=None, color_scale="Viridis", title="Correlation Heatmap", show_values=True,project_id=None):
     """
     Generates a heatmap of correlations between numerical columns in the dataset.
@@ -497,7 +500,7 @@ def create_correlation_heatmap(columns=None, color_scale="Viridis", title="Corre
         logger.error(f"An error occurred: {e}")
         return None
 
-
+@tool
 def create_faceted_bar_chart(
     x,
     y,
@@ -575,7 +578,8 @@ def create_faceted_bar_chart(
     except Exception as e:
         logger.error(f"An unexpected error occurred: {e}")
         return None
-    
+ 
+@tool   
 def create_histogram(x, color=None, x_label=None, y_label=None,project_id=None):
     """
     Create a histogram using Plotly Express.
@@ -605,7 +609,7 @@ def create_histogram(x, color=None, x_label=None, y_label=None,project_id=None):
         print(f"An error occurred while creating the histogram: {e}")
         
         
-        
+@tool      
 def create_pie_chart(values, names, color=None, title=None,project_id=None):
     """
     Create a pie chart using Plotly Express.
@@ -636,7 +640,7 @@ def create_pie_chart(values, names, color=None, title=None,project_id=None):
         print(f"An error occurred while creating the pie chart: {e}")
         
         
-        
+@tool       
 def create_area_chart(x, y, color=None, x_label=None, y_label=None, title=None,project_id=None):
     """
     Create an area chart using Plotly Express.
@@ -668,7 +672,7 @@ def create_area_chart(x, y, color=None, x_label=None, y_label=None, title=None,p
     except Exception as e:
         print(f"Error creating area chart: {e}")
         
-        
+@tool        
 def create_boxplot(x=None, y=None, color=None, x_label=None, y_label=None,project_id=None):
     """
     Create a box plot using Plotly Express.
@@ -711,7 +715,7 @@ def create_boxplot(x=None, y=None, color=None, x_label=None, y_label=None,projec
     except Exception as e:
         print(f"Error: {e}")
         
-        
+@tool        
 def create_violin_plot(x=None, y=None, color=None, points=None, hover_data=None, x_label=None, y_label=None,project_id=None):
     """
     Create a violin plot using Plotly Express.
@@ -755,3 +759,62 @@ def create_violin_plot(x=None, y=None, color=None, points=None, hover_data=None,
         return fig
     except Exception as e:
        print(f"An error occurred: {e}")  
+
+
+tools = [line_plot,
+        scatter_plot,
+        bubble_plot,
+        swarm_plot,
+        grouped_bar_plot,
+        create_pairplot,
+        create_radar_chart,
+        create_treemap,
+        create_correlation_heatmap,
+        create_faceted_bar_chart,
+        create_histogram,
+        create_pie_chart,
+        create_area_chart,
+        create_boxplot,
+        create_violin_plot]
+
+def tool_node(state):
+    tools_by_name = {line_plot.name: line_plot,
+                    scatter_plot.name: scatter_plot,
+                    bubble_plot.name: bubble_plot,
+                    swarm_plot.name: swarm_plot,
+                    grouped_bar_plot.name: grouped_bar_plot,
+                    create_pairplot.name: create_pairplot,
+                    create_radar_chart.name: create_radar_chart,
+                    create_treemap.name: create_treemap,
+                    create_correlation_heatmap.name: create_correlation_heatmap,
+                    create_faceted_bar_chart.name: create_faceted_bar_chart,
+                    create_histogram.name: create_histogram,
+                    create_pie_chart.name: create_pie_chart,
+                    create_area_chart.name: create_area_chart,
+                    create_boxplot.name: create_boxplot,
+                    create_violin_plot.name: create_violin_plot}
+    
+    messages = state["messages"]
+    last_message = messages[-1]
+    output_messages = []
+    for tool_call in last_message.tool_calls:
+        try:
+            tool_result = tools_by_name[tool_call["name"]].invoke(tool_call["args"])
+            output_messages.append(
+                ToolMessage(
+                    content=json.dumps(tool_result),
+                    name=tool_call["name"],
+                    tool_call_id=tool_call["id"],
+                )
+            )
+        except Exception as e:
+            # Return the error if the tool call fails
+            output_messages.append(
+                ToolMessage(
+                    content="",
+                    name=tool_call["name"],
+                    tool_call_id=tool_call["id"],
+                    additional_kwargs={"error": e},
+                )
+            )
+    return {"messages": output_messages}

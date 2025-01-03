@@ -26,15 +26,8 @@ def create_tool_agent(llm: ChatGoogleGenerativeAI, tools: list, system_prompt: s
     #define system message
     system_message_prompt = SystemMessagePromptTemplate(prompt=system_prompt_template)
 
-    human_message = PromptTemplate(
-
-                template= system_prompt + """
-                Here is the data report, 
-                based on it call the visualizations needed by following the system instruction:
-                \n\n {data_report}
-                """,
-                input_variables=["data_report"],
-            )
+    human_message = PromptTemplate()
+    
     prompt = ChatPromptTemplate.from_messages(
         [
         system_message_prompt,
@@ -44,5 +37,5 @@ def create_tool_agent(llm: ChatGoogleGenerativeAI, tools: list, system_prompt: s
 
     agent = create_tool_calling_agent(llm, tools, prompt)
     executor = AgentExecutor(agent=agent, tools=tools, 
-                return_intermediate_steps= True, verbose = False)
+                return_intermediate_steps= True, verbose = True)
     return executor
