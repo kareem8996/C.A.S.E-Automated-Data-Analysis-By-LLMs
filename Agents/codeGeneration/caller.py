@@ -15,6 +15,7 @@ def caller_node(state):
     messages = [
         {"role": "system", "content": prompt},
     ]+state['messages']
+    print(messages)
     model_with_tools=llm.bind_tools(tools)
     response = model_with_tools.invoke(messages)
     return {"messages": [response]}

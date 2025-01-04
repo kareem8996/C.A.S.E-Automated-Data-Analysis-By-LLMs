@@ -17,7 +17,7 @@ from Database import mainDatabase
 logger=loggerModule.setup_logging()
 
 @tool
-def line_plot(x, y, color=None, labels=None, title=None,width=800, height=600,project_id=None):
+def line_plot(x:str, y:str, color:str=None, labels:list[str]=None, title:str=None,project_id:str=None):
     """
     Generates a line plot using Plotly Express.
 
@@ -63,7 +63,7 @@ def line_plot(x, y, color=None, labels=None, title=None,width=800, height=600,pr
         print(f"Error creating line plot: {e}")
 
 @tool
-def scatter_plot(x, y, color=None, labels=None, 
+def scatter_plot(x:str, y:str, color:str=None, labels:list[str]=None, 
                 marginal_x=None, marginal_y=None, trendline=None, 
                 trendline_scope=None, title=None,project_id=None):
     """
@@ -121,7 +121,7 @@ def scatter_plot(x, y, color=None, labels=None,
 
 @tool
 def bubble_plot(x, y, color=None, size=None, labels=None, 
-                title=None, width=800, height=600,project_id=None): 
+                title=None,project_id=None): 
     """
     Generates a bubble plot using Plotly Express.
 
