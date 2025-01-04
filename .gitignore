@@ -1,7 +1,7 @@
 # Exclude Python virtual environments
 venv/
 .env/
-
+.env
 # Python-related files
 *.pyc
 __pycache__/
