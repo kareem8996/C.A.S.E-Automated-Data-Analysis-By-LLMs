@@ -1,5 +1,8 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from mainTools import tools
+from dotenv import load_dotenv
+load_dotenv()
+
 CONFIGURATIONS={
     'temperature':0.7,
     'model':"gemini-1.5-pro",

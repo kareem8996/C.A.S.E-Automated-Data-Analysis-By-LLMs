@@ -5,7 +5,8 @@ from langgraph.graph import END
 from langgraph.types import Command
 from langchain_core.messages import  ToolMessage
 
-
+from dotenv import load_dotenv
+load_dotenv()
 
 system_prompt = (
     "You are a supervisor tasked with managing a conversation between the"
