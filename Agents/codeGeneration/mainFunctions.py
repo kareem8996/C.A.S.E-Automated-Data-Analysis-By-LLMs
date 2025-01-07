@@ -1,4 +1,5 @@
 import plotly.express as px
+import plotly
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -16,7 +17,7 @@ from Database import mainDatabase
 logger=loggerModule.setup_logging()
 
 @tool
-def line_plot(x : str, y : str, color : str = None, labels : dict = None, title : str = None,project_id : str = None) -> px.graph_objects.Figure:
+def line_plot(x : str, y : str, color : str = None, labels : dict = None, title : str = None,project_id : str = None) -> plotly.graph_objects.Figure:
     """
     Generates a line plot using Plotly Express.
 
@@ -28,7 +29,7 @@ def line_plot(x : str, y : str, color : str = None, labels : dict = None, title 
     title (str, optional): Title of the plot.
 
     Returns:
-    - plotly.graph_objects.Figure: The generated line plot.
+    - plotly.graph_objects.Figure: The generated line plot using the passed parameters.
     """
     try:
         df=mainDatabase.fetch_dataset(project_id)
@@ -61,7 +62,7 @@ def line_plot(x : str, y : str, color : str = None, labels : dict = None, title 
         print(f"Error creating line plot: {e}")
 
 @tool
-def scatter_plot(x : str, y : str, color : str = None, labels : dict = None, marginal_x : str = None, marginal_y : str = None, trendline : str = None, trendline_scope : str = None, title : str = None,project_id : str = None)-> px.graph_objects.Figure:
+def scatter_plot(x : str, y : str, color : str = None, labels : dict = None, marginal_x : str = None, marginal_y : str = None, trendline : str = None, trendline_scope : str = None, title : str = None,project_id : str = None)-> plotly.graph_objects.Figure:
     """
     Generates a scatter plot using Plotly Express.
 
@@ -78,7 +79,7 @@ def scatter_plot(x : str, y : str, color : str = None, labels : dict = None, mar
     - height (int, optional): Height of the plot in pixels (default: 600).
 
     Returns:
-    - plotly.graph_objects.Figure: The generated scatter plot.
+    - plotly.graph_objects.Figure: The generated scatter plot using the passed parameters.
     """
     try:
         data=mainDatabase.fetch_dataset(project_id)
@@ -115,7 +116,7 @@ def scatter_plot(x : str, y : str, color : str = None, labels : dict = None, mar
         print(f"Error creating scatter plot: {e}")
 
 @tool
-def bubble_plot(x : str, y : str, color : str = None, size : str = None, labels : dict = None, title : str = None,project_id : str = None)-> px.graph_objects.Figure:
+def bubble_plot(x : str, y : str, color : str = None, size : str = None, labels : dict = None, title : str = None,project_id : str = None)-> plotly.graph_objects.Figure:
     """
     Generates a bubble plot using Plotly Express.
 
@@ -172,7 +173,7 @@ def bubble_plot(x : str, y : str, color : str = None, size : str = None, labels 
         print(f"Error creating bubble plot: {e}")
 
 @tool
-def swarm_plot(x : str, y : str, color : str = None, labels : dict = None, stripmode : str = "group", title : str = None,project_id : str = None)-> px.graph_objects.Figure:
+def swarm_plot(x : str, y : str, color : str = None, labels : dict = None, stripmode : str = "group", title : str = None,project_id : str = None)-> plotly.graph_objects.Figure:
     """
     Creates a swarm plot (approximated using scatter plot) using Plotly Express.
 
@@ -220,7 +221,7 @@ def swarm_plot(x : str, y : str, color : str = None, labels : dict = None, strip
         print(f"Error creating swarm plot: {e}")
 
 @tool
-def grouped_bar_plot(x: str, y: str, color: str = None, title: str = "Grouped Bar Plot",project_id: str = None)-> px.graph_objects.Figure:
+def grouped_bar_plot(x: str, y: str, color: str = None, title: str = "Grouped Bar Plot",project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Creates a grouped bar plot using Plotly Express.
 
@@ -262,7 +263,7 @@ def grouped_bar_plot(x: str, y: str, color: str = None, title: str = "Grouped Ba
         print(f"Error creating grouped bar plot: {e}")
 
 @tool
-def create_pairplot(color: str = None, dimensions: list = None, diagonal_visible: bool = True,title: str = 'Pair Plot',project_id: str = None)-> px.graph_objects.Figure:
+def create_pairplot(color: str = None, dimensions: list = None, diagonal_visible: bool = True,title: str = 'Pair Plot',project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Create a pairplot using Plotly.
 
@@ -299,7 +300,7 @@ def create_pairplot(color: str = None, dimensions: list = None, diagonal_visible
         logger.error(f"An error occurred: {e}")
 
 @tool
-def create_radar_chart( category_column: str, value_columns: list = None, title: str = "Radar Chart", color_column: str = None,project_id: str = None)-> px.graph_objects.Figure:
+def create_radar_chart( category_column: str, value_columns: list = None, title: str = "Radar Chart", color_column: str = None,project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Generates a radar chart using Plotly Express.
 
@@ -362,7 +363,7 @@ def create_radar_chart( category_column: str, value_columns: list = None, title:
         return None
 
 @tool
-def create_treemap(path_columns: list, value_column: str = None, color_column: str = None, title: str = "Treemap", color_scale: str = "Viridis",project_id: str = None)-> px.graph_objects.Figure:
+def create_treemap(path_columns: list, value_column: str = None, color_column: str = None, title: str = "Treemap", color_scale: str = "Viridis",project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Generates a treemap using Plotly Express.
 
@@ -431,7 +432,7 @@ def create_treemap(path_columns: list, value_column: str = None, color_column: s
         return None
 
 @tool
-def create_correlation_heatmap(columns: list = None, color_scale: str = "Viridis", title: str = "Correlation Heatmap", show_values: bool = True,project_id: str = None)-> px.graph_objects.Figure:
+def create_correlation_heatmap(columns: list = None, color_scale: str = "Viridis", title: str = "Correlation Heatmap", show_values: bool = True,project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Generates a heatmap of correlations between numerical columns in the dataset.
 
@@ -488,7 +489,7 @@ def create_correlation_heatmap(columns: list = None, color_scale: str = "Viridis
         return None
 
 @tool
-def create_faceted_bar_chart(x: str,y: str,color: str = None,barmode: str = "group",facet_row: str = None,facet_col: str = None,title: str = "Faceted Bar Chart",project_id: str = None)-> px.graph_objects.Figure:
+def create_faceted_bar_chart(x: str,y: str,color: str = None,barmode: str = "group",facet_row: str = None,facet_col: str = None,title: str = "Faceted Bar Chart",project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Generates a faceted bar chart using Plotly Express with null value handling.
 
@@ -558,7 +559,7 @@ def create_faceted_bar_chart(x: str,y: str,color: str = None,barmode: str = "gro
         return None
 
 @tool
-def create_histogram(x: str, color: str = None, x_label: str = None, y_label: str = None,project_id: str = None)-> px.graph_objects.Figure:
+def create_histogram(x: str, color: str = None, x_label: str = None, y_label: str = None,project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Create a histogram using Plotly Express.
     
@@ -587,7 +588,7 @@ def create_histogram(x: str, color: str = None, x_label: str = None, y_label: st
         print(f"An error occurred while creating the histogram: {e}")
 
 @tool
-def create_pie_chart(values: str, names: str, color: str = None, title: str = None,project_id: str = None)-> px.graph_objects.Figure:
+def create_pie_chart(values: str, names: str, color: str = None, title: str = None,project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Create a pie chart using Plotly Express.
 
@@ -617,7 +618,7 @@ def create_pie_chart(values: str, names: str, color: str = None, title: str = No
         print(f"An error occurred while creating the pie chart: {e}")
 
 @tool
-def create_area_chart(x: str, y: str, color: str = None, x_label: str = None, y_label: str = None, title: str = None,project_id: str = None)-> px.graph_objects.Figure:
+def create_area_chart(x: str, y: str, color: str = None, x_label: str = None, y_label: str = None, title: str = None,project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Create an area chart using Plotly Express.
 
@@ -649,7 +650,7 @@ def create_area_chart(x: str, y: str, color: str = None, x_label: str = None, y_
         print(f"Error creating area chart: {e}")
 
 @tool
-def create_boxplot(x: str = None, y: str = None, color: str = None, x_label: str = None, y_label: str = None,project_id: str = None)-> px.graph_objects.Figure:
+def create_boxplot(x: str = None, y: str = None, color: str = None, x_label: str = None, y_label: str = None,project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Create a box plot using Plotly Express.
     
@@ -692,7 +693,7 @@ def create_boxplot(x: str = None, y: str = None, color: str = None, x_label: str
         print(f"Error: {e}")
 
 @tool
-def create_violin_plot(x: str = None, y: str = None, color: str = None, points: str = None, hover_data: list = None, x_label: str = None, y_label: str = None,project_id: str = None)-> px.graph_objects.Figure:
+def create_violin_plot(x: str = None, y: str = None, color: str = None, points: str = None, hover_data: list = None, x_label: str = None, y_label: str = None,project_id: str = None)-> plotly.graph_objects.Figure:
     """
     Create a violin plot using Plotly Express.
     
