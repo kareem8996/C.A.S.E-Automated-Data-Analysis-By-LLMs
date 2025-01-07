@@ -29,7 +29,7 @@ def line_plot(x : str, y : str, color : str = None, labels : dict = None, title 
     title (str, optional): Title of the plot.
 
     Returns:
-    - plotly.graph_objects.Figure: The generated line plot using the passed parameters.
+    - plotly.graph_objects.Figure: The generated line plot.
     """
     try:
         df=mainDatabase.fetch_dataset(project_id)
@@ -79,7 +79,7 @@ def scatter_plot(x : str, y : str, color : str = None, labels : dict = None, mar
     - height (int, optional): Height of the plot in pixels (default: 600).
 
     Returns:
-    - plotly.graph_objects.Figure: The generated scatter plot using the passed parameters.
+    - plotly.graph_objects.Figure: The generated scatter plot.
     """
     try:
         data=mainDatabase.fetch_dataset(project_id)
