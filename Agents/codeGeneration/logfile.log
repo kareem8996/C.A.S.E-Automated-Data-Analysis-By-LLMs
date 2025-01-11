@@ -1,0 +1,596 @@
+2025-01-05 10:04:36,869 - uvicorn.error - ERROR - Traceback (most recent call last):
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_google_genai\chat_models.py", line 178, in _chat_with_retry
+    return generation_method(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 830, in generate_content
+    response = rpc(
+               ^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\timeout.py", line 120, in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.InvalidArgument: 400 * GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[trendline].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[trendline_scope].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[marginal_x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[marginal_y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[size].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[labels].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[stripmode].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[labels].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[dimensions].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[diagonal_visible].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[value_columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[category_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[color_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[value_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[path_columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[color_scale].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[color_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[show_values].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[color_scale].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[facet_row].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[barmode].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[facet_col].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[values].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[names].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[hover_data].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[points].type: must be specified when not using one_of
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\starlette\routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph_api\lifespan.py", line 30, in lifespan
+    await collect_graphs_from_env(True)
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph_api\graph.py", line 257, in collect_graphs_from_env
+    graph = await run_in_executor(None, _graph_from_spec, spec)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\runnables\config.py", line 588, in run_in_executor
+    return await asyncio.get_running_loop().run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\runnables\config.py", line 579, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph_api\graph.py", line 286, in _graph_from_spec
+    module = importlib.import_module(spec.module)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "D:\UNI\Graduation Project\PROJECT\C.A.S.E-Automated-Data-Analysis-By-LLMs\Agents\codeGeneration\pipeline.py", line 37, in <module>
+    print(graph.invoke(
+          ^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\pregel\__init__.py", line 1936, in invoke
+    for chunk in self.stream(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\pregel\__init__.py", line 1656, in stream
+    for _ in runner.tick(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\pregel\runner.py", line 167, in tick
+    run_with_retry(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\pregel\retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\utils\runnable.py", line 408, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\utils\runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\UNI\Graduation Project\PROJECT\C.A.S.E-Automated-Data-Analysis-By-LLMs\Agents\codeGeneration\caller.py", line 20, in caller_node
+    response = model_with_tools.invoke(messages)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\runnables\base.py", line 5354, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 286, in invoke
+    self.generate_prompt(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 786, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 643, in generate
+    raise e
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 633, in generate
+    self._generate_with_cache(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 851, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_google_genai\chat_models.py", line 946, in _generate
+    response: GenerateContentResponse = _chat_with_retry(
+                                        ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_google_genai\chat_models.py", line 196, in _chat_with_retry
+    return _chat_with_retry(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 330, in wrapped_f
+    return self(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 467, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 368, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 390, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 470, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_google_genai\chat_models.py", line 190, in _chat_with_retry
+    raise ChatGoogleGenerativeAIError(
+langchain_google_genai.chat_models.ChatGoogleGenerativeAIError: Invalid argument provided to Gemini: 400 * GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[trendline].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[trendline_scope].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[marginal_x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[marginal_y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[size].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[labels].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[stripmode].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[labels].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[dimensions].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[diagonal_visible].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[value_columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[category_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[color_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[value_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[path_columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[color_scale].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[color_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[show_values].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[color_scale].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[facet_row].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[barmode].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[facet_col].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[values].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[names].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[hover_data].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[points].type: must be specified when not using one_of
+
+During task with name 'caller' and id '98a46352-8ba8-fad0-3cbe-78c36bbf88f1'
+
+2025-01-05 10:04:36,870 - uvicorn.error - ERROR - Application startup failed. Exiting.
+2025-01-05 10:06:05,328 - uvicorn.error - ERROR - Traceback (most recent call last):
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_google_genai\chat_models.py", line 178, in _chat_with_retry
+    return generation_method(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 830, in generate_content
+    response = rpc(
+               ^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\retry\retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\timeout.py", line 120, in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.InvalidArgument: 400 * GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[marginal_x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[trendline].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[marginal_y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[trendline_scope].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[size].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[labels].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[labels].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[stripmode].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[diagonal_visible].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[dimensions].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[value_columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[category_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[color_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[value_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[color_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[path_columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[color_scale].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[color_scale].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[show_values].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[facet_row].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[facet_col].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[barmode].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[names].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[values].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[points].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[hover_data].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[y].type: must be specified when not using one_of
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\starlette\routing.py", line 693, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph_api\lifespan.py", line 30, in lifespan
+    await collect_graphs_from_env(True)
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph_api\graph.py", line 257, in collect_graphs_from_env
+    graph = await run_in_executor(None, _graph_from_spec, spec)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\runnables\config.py", line 588, in run_in_executor
+    return await asyncio.get_running_loop().run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\runnables\config.py", line 579, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph_api\graph.py", line 286, in _graph_from_spec
+    module = importlib.import_module(spec.module)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "D:\UNI\Graduation Project\PROJECT\C.A.S.E-Automated-Data-Analysis-By-LLMs\Agents\codeGeneration\pipeline.py", line 37, in <module>
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\pregel\__init__.py", line 1936, in invoke
+    for chunk in self.stream(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\pregel\__init__.py", line 1656, in stream
+    for _ in runner.tick(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\pregel\runner.py", line 167, in tick
+    run_with_retry(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\pregel\retry.py", line 40, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\utils\runnable.py", line 408, in invoke
+    input = step.invoke(input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langgraph\utils\runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\UNI\Graduation Project\PROJECT\C.A.S.E-Automated-Data-Analysis-By-LLMs\Agents\codeGeneration\caller.py", line 20, in caller_node
+    response = model_with_tools.invoke(messages)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\runnables\base.py", line 5354, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 286, in invoke
+    self.generate_prompt(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 786, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 643, in generate
+    raise e
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 633, in generate
+    self._generate_with_cache(
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_core\language_models\chat_models.py", line 851, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_google_genai\chat_models.py", line 946, in _generate
+    response: GenerateContentResponse = _chat_with_retry(
+                                        ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_google_genai\chat_models.py", line 196, in _chat_with_retry
+    return _chat_with_retry(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 330, in wrapped_f
+    return self(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 467, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 368, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 390, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\tenacity\__init__.py", line 470, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kareem Abouelseoud\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\langchain_google_genai\chat_models.py", line 190, in _chat_with_retry
+    raise ChatGoogleGenerativeAIError(
+langchain_google_genai.chat_models.ChatGoogleGenerativeAIError: Invalid argument provided to Gemini: 400 * GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[marginal_x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[trendline].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[marginal_y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[1].parameters.properties[trendline_scope].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[size].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[2].parameters.properties[labels].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[labels].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[stripmode].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[4].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[diagonal_visible].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[dimensions].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[value_columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[category_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[color_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[6].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[value_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[color_column].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[path_columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[color_scale].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[7].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[columns].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[color_scale].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[8].parameters.properties[show_values].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[facet_row].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[facet_col].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[barmode].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[9].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[10].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[names].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[values].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[title].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[12].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[13].parameters.properties[y].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[x_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[x].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[points].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[color].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[project_id].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[y_label].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[hover_data].type: must be specified when not using one_of
+* GenerateContentRequest.tools[0].function_declarations[14].parameters.properties[y].type: must be specified when not using one_of
+
+During task with name 'caller' and id '80bc90ce-463c-d194-d928-3d47df3aac7e'
+
+2025-01-05 10:06:05,329 - uvicorn.error - ERROR - Application startup failed. Exiting.

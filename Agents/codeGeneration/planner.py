@@ -2,7 +2,6 @@ from typing import Literal
 from pydantic import BaseModel
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.graph import END
-from langgraph.types import Command
 from langchain_core.messages import  ToolMessage
 from langchain import hub
 from dotenv import load_dotenv
@@ -21,7 +20,7 @@ def planner_node(state) -> Literal["coder", "caller"]:
     ] + state["messages"]
     response = llm.with_structured_output(Planner).invoke(messages)
     goto = response.next
-    return Command(goto=goto)
+    return goto
 
 
 def should_fallback(state) -> Literal["__end__", "caller"]:
@@ -30,16 +29,3 @@ def should_fallback(state) -> Literal["__end__", "caller"]:
     if failed_tool_messages:
         return "caller"
     return END
-
-
-
-# Example state with messages
-state = {
-    "messages": [
-        {"role": "human", "content": '{"plot_type": "Pie Chart", "values": ["survived"], "names": ["alive", "dead"], "title": "Survival Distribution", "color": ["green", "red"]}'}
-    ]
-}
-
-# Invoke the planner_node function
-next_worker = planner_node(state)
-print(f"Next worker: {next_worker}")
