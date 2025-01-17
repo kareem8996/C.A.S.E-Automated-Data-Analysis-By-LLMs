@@ -13,19 +13,17 @@ class Planner(BaseModel):
 
 
 
-def planner_node(state) -> Literal["coder", "caller"]:
-    llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro", temperature=0.7)
+def planner_node(state):
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.7)
     messages = [
         {"role": "system", "content": system_prompt},
     ] + state["messages"]
     response = llm.with_structured_output(Planner).invoke(messages)
     goto = response.next
-    return goto
+    return {'next':goto}
 
+def planner_brancher(state)-> Literal["coder", "caller"]:
+    return state['next']
 
-def should_fallback(state) -> Literal["__end__", "caller"]:
-    messages = state["messages"]
-    failed_tool_messages = [msg for msg in messages if isinstance(msg, ToolMessage) and msg.additional_kwargs.get("error") is not None]
-    if failed_tool_messages:
-        return "caller"
-    return END
+def tool_brancher(state)-> Literal["caller", "__end__"]:
+    return state['next']
