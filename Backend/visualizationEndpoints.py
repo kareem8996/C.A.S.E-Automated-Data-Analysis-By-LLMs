@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from fastapi import APIRouter
-from Agents.codeGeneration import mainTools
+from Agents.codeGeneration import pipeline
 import json
 import numpy as np
 import time
@@ -39,11 +39,6 @@ async def visualization(project_id:str):
     Returns:
         dict: JSON with visualization data.
     """
-    fig2 = mainTools.scatter_plot(x='Fare', y='Age',project_id=project_id)
-    fig2 = make_serializable(fig2.to_dict())
-    
-    # Visualization 3
-    fig3 = mainTools.line_plot(x='Fare', y='Age',project_id=project_id)
-    fig3 = make_serializable(fig3.to_dict())
-    # time.sleep(10)
-    return {'visualizations':[fig2, fig3]}
+    visualizations = pipeline.generate_visualizations(project_id)
+    serializable_visualizations = [make_serializable(v) for v in visualizations]
+    return {'visualizations':serializable_visualizations}

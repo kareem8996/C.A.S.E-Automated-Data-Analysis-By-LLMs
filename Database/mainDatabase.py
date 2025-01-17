@@ -4,11 +4,13 @@ import bcrypt
 import shutil
 import csv
 import os
+import json
 
 user_directory=r'Database\Users\users.csv' #temp until we create a real database
 project_directory=r'Database\Projects\projects.csv' #temp until we create a real database
-raw_datasets_directory=r'Database\\rawDatasets\\'
-processed_datasets_directory=r'Database\processedDatasets\\'
+raw_datasets_directory=r'Database\rawDatasets'
+processed_datasets_directory=r'Database\processedDatasets'
+data_reports_directory=r'Database\dataReports'
 
 def check_login(username,password):
     df=pd.read_csv(user_directory)
@@ -134,11 +136,19 @@ def get_project(project_id):
 
 
 def fetch_dataset(project_id):
-    raw_dataset_path = os.path.join(raw_datasets_directory, f"raw_dataset_{project_id}.csv")
+    raw_dataset_path = raw_datasets_directory+r"\raw_dataset_{}.csv".format(project_id)
     if os.path.exists(raw_dataset_path):
         raw_dataset = pd.read_csv(raw_dataset_path)
         return raw_dataset
     else:
         return None
-    
 
+def fetch_data_report(project_id):
+    raw_data_report_path = data_reports_directory+r"\data_report_{}.json".format(project_id)
+    if os.path.exists(raw_data_report_path):
+        with open(raw_data_report_path, 'r', encoding='utf-8') as file:
+            json_content = json.load(file)
+            json_string = json.dumps(json_content)
+            return json_string
+    else:
+        return None
