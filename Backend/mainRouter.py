@@ -1,3 +1,6 @@
+"""
+This file is the main router for the FastAPI application. It includes the database and visualization routers.
+"""
 from fastapi import FastAPI, APIRouter
 from databaseEndpoints import db_router
 from visualizationEndpoints import viz_router

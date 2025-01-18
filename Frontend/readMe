@@ -1,0 +1,18 @@
+# How to Run the Frontend App
+
+To run the frontend application using Streamlit, follow these steps:
+
+1. Install Streamlit if you haven't already. You can do this using pip:
+    ```
+    pip install streamlit
+    ```
+
+2. Navigate to the directory where your `app.py` file is located.
+
+3. Run the Streamlit app using the following command:
+    ```
+    streamlit run app.py
+    ```
+
+That's it! Your frontend app should now be running.
+Dont forget to run the backend too!
