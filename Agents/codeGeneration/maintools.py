@@ -48,16 +48,16 @@ logger=loggerModule.setup_logging()
 
 
 @tool
-def create_line_plot(x: str, y: str, color: str = None,x_label: str=None,y_label: str=None, title: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
+def create_line_plot(x: str, y: str,  title: Optional[str], color: str = None,x_label: str=None,y_label: str=None, project_id: Optional[str] = None) -> Dict:
     """
     Generates a line plot using Plotly Express and returns the figure as a dictionary.
 
     Args:
     x (str): Column for the x-axis.
     y (str): Column for the y-axis.
+    title (str, optional): Title of the plot.
     color (str, optional): Column to color the lines.
     labels: A dictionary where keys and values are strings. Example: {"key1": "value1", "key2": "value2"}
-    title (str, optional): Title of the plot.
 
     Returns:
     - dict: The generated line plot as a dictionary.
@@ -93,20 +93,20 @@ def create_line_plot(x: str, y: str, color: str = None,x_label: str=None,y_label
         print(f"Error creating line plot: {e}")
 
 @tool
-def create_scatter_plot(x: str, y: str, color: Optional[str] = None,x_label: str=None,y_label: str=None, marginal_x: Optional[str] = None, marginal_y: Optional[str] = None, trendline: Optional[str] = None, trendline_scope: Optional[str] = None, title: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
+def create_scatter_plot(x: str, y: str,title: Optional[str],  color: Optional[str] = None,x_label: str=None,y_label: str=None, marginal_x: Optional[str] = None, marginal_y: Optional[str] = None, trendline: Optional[str] = None, trendline_scope: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
     """
     Generates a scatter plot using Plotly Express and returns the figure as a dictionary.
 
     Parameters:
     - x (str): The column name for the x-axis.
     - y (str): The column name for the y-axis.
+    - title (str, optional): The title of the plot.
     - color (str, optional): Column name to differentiate points by color (e.g., groups or categories).
     - labels (dict, optional): Dictionary of axis label mappings for x and y.
     - marginal_x (str, optional): Type of marginal plot for x (e.g., 'box', 'violin').
     - marginal_y (str, optional): Type of marginal plot for y (e.g., 'box', 'violin').
     - trendline (str, optional): Type of trendline to draw (e.g., 'ols', 'lowess').
     - trendline_scope (str, optional): Whether trendlines are fit per trace or across traces (default: 'trace').
-    - title (str, optional): The title of the plot.
 
     Returns:
     - dict: The generated scatter plot as a dictionary.
@@ -121,6 +121,9 @@ def create_scatter_plot(x: str, y: str, color: Optional[str] = None,x_label: str
         # Check if the specified columns are the same
         if x == y or x == color or y == color:
             raise ValueError("The specified x, y, or color column is the same as the other column.")
+        
+        if trendline not in ["ols","lowess","rolling","expanding"]:
+            trendline = "ols"
         
         # Drop rows with missing values in the relevant columns 
         relevant_columns = [col for col in [x, y, color] if col is not None]
@@ -146,17 +149,17 @@ def create_scatter_plot(x: str, y: str, color: Optional[str] = None,x_label: str
         print(f"Error creating scatter plot: {e}")
 
 @tool
-def create_bubble_plot(x: str, y: str, color: Optional[str] = None, size: Optional[str] = None, x_label: str=None,y_label: str=None, title: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
+def create_bubble_plot(x: str, y: str, title: Optional[str], color: Optional[str] = None, size: Optional[str] = None, x_label: str=None,y_label: str=None, project_id: Optional[str] = None) -> Dict:
     """
     Generates a bubble plot using Plotly Express and returns the figure as a dictionary.
 
     Parameters:
     - x (str): The column name for the x-axis.
     - y (str): The column name for the y-axis.
+    - title (str, optional): The title of the plot.
     - color (str, optional): Column name to differentiate points by color (e.g., groups or categories).
     - size (str, optional): Column name representing the size of the bubbles.
     - labels (dict, optional): Dictionary of axis label mappings for x and y.
-    - title (str, optional): The title of the plot.
 
     Returns:
     - dict: The generated bubble plot as a dictionary.
@@ -194,17 +197,17 @@ def create_bubble_plot(x: str, y: str, color: Optional[str] = None, size: Option
         print(f"Error creating bubble plot: {e}")
 
 @tool
-def create_swarm_plot(x: str, y: str, color: Optional[str] = None,  x_label: str=None,y_label: str=None, stripmode: Optional[str] = "group", title: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
+def create_swarm_plot(x: str, y: str, title: Optional[str], color: Optional[str] = None,  x_label: str=None,y_label: str=None, stripmode: Optional[str] = "group", project_id: Optional[str] = None) -> Dict:
     """
     Creates a swarm plot (approximated using scatter plot) using Plotly Express and returns the figure as a dictionary.
 
     Parameters:
         x (str): Column name for the x-axis.
         y (str): Column name for the y-axis.
+        title (str, optional): Title of the plot.
         color (str, optional): Column name to group points by color.
         labels (dict, optional): Dictionary of axis or legend labels.
         stripmode (str, optional): Mode for strip plot, e.g., "group".
-        title (str, optional): Title of the plot.
 
     Returns:
         dict: The generated swarm plot as a dictionary.
@@ -242,15 +245,15 @@ def create_swarm_plot(x: str, y: str, color: Optional[str] = None,  x_label: str
         print(f"Error creating swarm plot: {e}")
 
 @tool
-def grouped_bar_plot(x: str, y: str, color: Optional[str] = None, title: Optional[str] = "Grouped Bar Plot", project_id: Optional[str] = None) -> Dict:
+def grouped_bar_plot(x: str, y: str, title: Optional[str] , color: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
     """
     Creates a grouped bar plot using Plotly Express and returns the plot as a dictionary.
 
     Parameters:
         x (str): Column name for the x-axis.
         y (str): Column name for the y-axis.
+        title (str, optional): Title of the plot.
         color (str, optional): Column name to group bars by color.
-        title (str, optional): Title of the plot (default is "Grouped Bar Plot").
 
     Returns:
         dict: The generated grouped bar plot as a dictionary.
@@ -284,11 +287,12 @@ def grouped_bar_plot(x: str, y: str, color: Optional[str] = None, title: Optiona
         print(f"Error creating grouped bar plot: {e}")
 
 @tool
-def create_pairplot(color: Optional[str] = None, dimensions: List[str] = None, diagonal_visible: Optional[bool] = True, title: Optional[str] = 'Pair Plot', project_id: Optional[str] = None) -> Dict:
+def create_pairplot(title: Optional[str], color: Optional[str] = None, dimensions: List[str] = None, diagonal_visible: Optional[bool] = True, project_id: Optional[str] = None) -> Dict:
     """
     Create a pairplot using Plotly and returns the plot as a dictionary.
 
     Parameters:
+    title (str): Title of the plot
     color (str): Column name to be used for color encoding.
     dimensions (list): List of column names to be used as dimensions for the pairplot.
     diagonal_visible (bool): Whether to show the diagonal plots.
@@ -321,15 +325,15 @@ def create_pairplot(color: Optional[str] = None, dimensions: List[str] = None, d
         logger.error(f"An error occurred: {e}")
 
 @tool
-def create_radar_chart(category_column: str, value_columns: List[str] = None, title: Optional[str] = "Radar Chart", color_column: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
+def create_radar_chart(category_column: str, title: Optional[str], value_columns: List[str] = None, color_column: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
     """
     Generates a radar chart using Plotly Express and returns the plot as a dictionary.
 
     Args:
         category_column (str): The column name that defines the categories (radial axis).
+        title (str, optional): The title of the radar chart. Default is "Radar Chart".
         value_columns (list, optional): List of column names to plot as radar lines.
                                          If None, all numerical columns except the category column will be used.
-        title (str, optional): The title of the radar chart. Default is "Radar Chart".
         color_column (str, optional): Column name for grouping different lines (optional).
                                        If None, no grouping is applied.
 
@@ -384,15 +388,15 @@ def create_radar_chart(category_column: str, value_columns: List[str] = None, ti
         return None
 
 @tool
-def create_treemap(path_columns: List[str], value_column: Optional[str] = None, color_column: Optional[str] = None, title: Optional[str] = "Treemap", color_scale: Optional[str] = "Viridis", project_id: Optional[str] = None) -> Dict:
+def create_treemap(path_columns: List[str], title: Optional[str], value_column: Optional[str] = None, color_column: Optional[str] = None, color_scale: Optional[str] = "Viridis", project_id: Optional[str] = None) -> Dict:
     """
     Generates a treemap using Plotly Express and returns the plot as a dictionary.
 
     Args:
         path_columns (list): A list of columns defining the hierarchy for the treemap.
+        title (str, optional): Title of the treemap.
         value_column (str, optional): The column to determine the size of the segments. If None, all segments will be of equal size.
         color_column (str, optional): The column to determine the color of the segments. If None, no color mapping is applied.
-        title (str, optional): Title of the treemap. Default is "Treemap".
         color_scale (str, optional): Color scale to use for the treemap. Default is "Viridis".
 
     Returns:
@@ -452,14 +456,14 @@ def create_treemap(path_columns: List[str], value_column: Optional[str] = None, 
         return None
 
 @tool
-def create_correlation_heatmap(columns: List[str] = None, color_scale: Optional[str] = "Viridis", title: Optional[str] = "Correlation Heatmap", show_values: Optional[bool] = True, project_id: Optional[str] = None) -> Dict:
+def create_correlation_heatmap(title: Optional[str], columns: List[str] = None, color_scale: Optional[str] = "Viridis", show_values: Optional[bool] = True, project_id: Optional[str] = None) -> Dict:
     """
     Generates a heatmap of correlations between numerical columns in the dataset and returns it as a dictionary.
 
     Args:
+        title (str, optional): Title of the heatmap.
         columns (list, optional): List of specific columns to include in the correlation. Default is None (use all numerical columns).
         color_scale (str, optional): Color scale to use for the heatmap. Default is "Viridis".
-        title (str, optional): Title of the heatmap. Default is "Correlation Heatmap".
         show_values (bool, optional): Whether to overlay correlation values on the heatmap. Default is True.
         project_id (str, optional): Project ID to fetch the dataset.
 
@@ -495,18 +499,18 @@ def create_correlation_heatmap(columns: List[str] = None, color_scale: Optional[
         return None
 
 @tool
-def create_faceted_bar_chart(x: str, y: str, color: Optional[str] = None, barmode: Optional[str] = "group", facet_row: Optional[str] = None, facet_col: Optional[str] = None, title: Optional[str] = "Faceted Bar Chart", project_id: Optional[str] = None) -> Dict:
+def create_faceted_bar_chart(x: str, y: str, title: Optional[str], color: Optional[str] = None, barmode: Optional[str] = "group", facet_row: Optional[str] = None, facet_col: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
     """
     Generates a faceted bar chart using Plotly Express and returns it as a dictionary.
 
     Args:
         x (str): Column name for the x-axis.
         y (str): Column name for the y-axis.
+        title (str, optional): Title of the chart.
         color (str, optional): Column name for bar colors. Default is None.
         barmode (str, optional): Bar mode. Options: 'group', 'overlay', 'relative'. Default is 'group'.
         facet_row (str, optional): Column name for facet rows. Default is None.
         facet_col (str, optional): Column name for facet columns. Default is None.
-        title (str, optional): Title of the chart. Default is "Faceted Bar Chart".
         project_id (str): Project ID to fetch the dataset.
 
     Returns:
@@ -540,12 +544,13 @@ def create_faceted_bar_chart(x: str, y: str, color: Optional[str] = None, barmod
         return None
 
 @tool
-def create_histogram(x: str, color: Optional[str] = None, x_label: Optional[str] = None, y_label: Optional[str] = None, project_id: str = None) -> Dict:
+def create_histogram(x: str, title: Optional[str], color: Optional[str] = None, x_label: Optional[str] = None, y_label: Optional[str] = None, project_id: str = None) -> Dict:
     """
     Creates a histogram using Plotly Express and returns it as a dictionary.
 
     Args:
         x (str): The column name for the x-axis.
+        title (str, optional): The title of the histogram.
         color (str, optional): The column name to be used for color encoding. Default is None.
         x_label (str, optional): Label for the x-axis. Default is None.
         y_label (str, optional): Label for the y-axis. Default is None.
@@ -566,15 +571,15 @@ def create_histogram(x: str, color: Optional[str] = None, x_label: Optional[str]
         return None
 
 @tool
-def create_pie_chart(values: str, names: str, color: Optional[str] = None, title: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
+def create_pie_chart(values: str, names: str, title: Optional[str], color: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
     """
     Creates a pie chart using Plotly Express and returns it as a dictionary.
 
     Args:
         values (str): The column name for the values.
+        title (str, optional): The title of the pie chart.
         names (str): The column name for the names (labels).
         color (str, optional): The column name to be used for color encoding. Default is None.
-        title (str, optional): The title of the pie chart. Default is None.
         project_id (str, optional): Project ID to fetch the dataset.
 
     Returns:
@@ -593,17 +598,17 @@ def create_pie_chart(values: str, names: str, color: Optional[str] = None, title
         return None
 
 @tool
-def create_area_chart(x: str, y: str, color: Optional[str] = None, x_label: Optional[str] = None, y_label: Optional[str] = None, title: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
+def create_area_chart(x: str, y: str, title: Optional[str], color: Optional[str] = None, x_label: Optional[str] = None, y_label: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
     """
     Creates an area chart using Plotly Express and returns it as a dictionary.
 
     Args:
         x (str): The column name for the x-axis.
         y (str): The column name for the y-axis.
+        title (Optional[str], optional): Title of the area chart.
         color (Optional[str], optional): The column name to be used for color encoding. Default is None.
         x_label (Optional[str], optional): Label for the x-axis. Default is None.
         y_label (Optional[str], optional): Label for the y-axis. Default is None.
-        title (Optional[str], optional): Title of the area chart. Default is None.
         project_id (Optional[str], optional): Project ID to fetch the dataset.
 
     Returns:
@@ -622,13 +627,14 @@ def create_area_chart(x: str, y: str, color: Optional[str] = None, x_label: Opti
         return None
 
 @tool
-def create_boxplot(x: Optional[str] = None, y: Optional[str] = None, color: Optional[str] = None, x_label: Optional[str] = None, y_label: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
+def create_boxplot(title: Optional[str], x: Optional[str] = None, y: Optional[str] = None, color: Optional[str] = None, x_label: Optional[str] = None, y_label: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
     """
     Creates a box plot using Plotly Express and returns it as a dictionary.
 
     Args:
         x (Optional[str], optional): The column name for the x-axis. Default is None.
         y (Optional[str], optional): The column name for the y-axis. Default is None.
+        title (Optional[str], optional): Title of the box plot.
         color (Optional[str], optional): The column name to be used for color encoding. Default is None.
         x_label (Optional[str], optional): Label for the x-axis. Default is None.
         y_label (Optional[str], optional): Label for the y-axis. Default is None.
@@ -655,13 +661,14 @@ def create_boxplot(x: Optional[str] = None, y: Optional[str] = None, color: Opti
         return None
 
 @tool
-def create_violin_plot(x: Optional[str] = None, y: Optional[str] = None, color: Optional[str] = None, points: Optional[str] = None, hover_data: List[str] = None, x_label: Optional[str] = None, y_label: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
+def create_violin_plot(title: Optional[str], x: Optional[str] = None, y: Optional[str] = None, color: Optional[str] = None, points: Optional[str] = None, hover_data: List[str] = None, x_label: Optional[str] = None, y_label: Optional[str] = None, project_id: Optional[str] = None) -> Dict:
     """
     Creates a violin plot using Plotly Express and returns it as a dictionary.
 
     Args:
         x (Optional[str]): The column name for the x-axis.
         y (Optional[str]): The column name for the y-axis.
+        title (Optional[str], optional): Title of the violin plot.
         color (Optional[str], optional): The column name to be used for color encoding. Default is None.
         points (Optional[str], optional): Whether to show data points. Options are 'all', 'outliers', 'suspectedoutliers', or 'false'. Default is 'all'.
         hover_data (Optional[list], optional): Additional data to display when hovering over points. Default is None.
