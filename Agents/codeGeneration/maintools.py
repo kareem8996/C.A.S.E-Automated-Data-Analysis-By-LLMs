@@ -1,3 +1,30 @@
+"""
+maintools.py
+
+This module defines various tools for data visualization using Plotly Express.
+The tools are designed to generate different types of plots based on the provided data.
+Tool node has also been defined to invoke the tools based on the caller.
+
+Dependencies:
+- plotly.express
+- pandas
+- numpy
+- langchain_core.tools
+- langchain_core.messages
+- dotenv
+
+Usage:
+1. Ensure that the required dependencies are installed.
+2. Set up the necessary environment variables in a .env file.
+3. Use the provided tools to generate visualizations based on the dataset.
+
+Functions:
+- load_dotenv: Loads environment variables from a .env file.
+- create_line_plot: Generates a line plot using Plotly Express and returns the figure as a dictionary.
+
+Variables:
+- logger: A logger instance for logging messages.
+"""
 import plotly.express as px
 from typing import Dict, Optional,List
 from typing_extensions import TypedDict
@@ -697,10 +724,12 @@ def tool_node(state)->Literal["caller", "__end__"]:
                     create_violin_plot.name: create_violin_plot}
     
     messages = state["messages"]
+    # get the last message of this state
     last_message = messages[-1]
     output_messages = []
     for tool_call in last_message.tool_calls:
         try:
+            # Invoke the tool based on the tool call
             tool_call["args"]["project_id"] = state["project_id"]
             tool_result = tools_by_name[tool_call["name"]].invoke(tool_call["args"])
             return {"next": "__end__",'visualization':tool_result}

@@ -12,6 +12,9 @@ import time
 viz_router = APIRouter()
 
 def make_serializable(obj):
+    """
+    Convert an object to a serializable format.
+    """
     if isinstance(obj, dict):
         return {k: make_serializable(v) for k, v in obj.items()}
     elif isinstance(obj, list):

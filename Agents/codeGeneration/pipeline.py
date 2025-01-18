@@ -1,3 +1,39 @@
+"""
+pipeline.py
+
+This module sets up a state graph for the application, defining the nodes and edges for the workflow.
+It integrates various components such as the caller,coder, planner, tools, and designer to create a complete pipeline.
+
+Dependencies:
+- typing_extensions
+- operator
+- langgraph.graph
+- caller
+- planner
+- mainTools
+- designer
+- langchain_core.messages
+- coder
+- os
+- sys
+- Database
+
+Usage:
+1. Ensure that the required dependencies are installed.
+2. Set up the necessary environment variables in a .env file.
+3. Use the generate_visualizations function to generate visualizations based on the project ID.
+
+Classes:
+- State: A TypedDict class to represent the state of the application.
+
+Functions:
+- generate_visualizations: Generates visualizations based on the project ID.
+
+Variables:
+- builder: An instance of StateGraph to build the state graph.
+- graph: The compiled state graph.
+"""
+
 from typing_extensions import TypedDict,Annotated,NotRequired
 import operator
 from langgraph.graph import StateGraph, START, END
@@ -11,7 +47,6 @@ from coder import coder_node
 import operator
 import os
 import sys
-import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from Database import mainDatabase
 
