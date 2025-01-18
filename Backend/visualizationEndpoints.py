@@ -44,4 +44,4 @@ async def visualization(project_id:str):
     """
     visualizations = pipeline.generate_visualizations(project_id)
     serializable_visualizations = [make_serializable(v) for v in visualizations]
-    return {'visualizations':serializable_visualizations}
+    return json.dumps({'visualizations': serializable_visualizations}, allow_nan=True)

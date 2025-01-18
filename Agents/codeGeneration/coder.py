@@ -14,7 +14,7 @@ tools=[]
 
 def coder_node(state):
     # WILL DO IT NEXT TIME
-    return {'call':""}
+    return {'visualization':None}
 
 
     

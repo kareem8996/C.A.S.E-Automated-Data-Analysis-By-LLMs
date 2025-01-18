@@ -37,13 +37,13 @@ Variables:
 from typing_extensions import TypedDict,Annotated,NotRequired
 import operator
 from langgraph.graph import StateGraph, START, END
-from caller import caller_node
-from planner import planner_node,planner_brancher,tool_brancher
-from mainTools import tool_node
-from designer import designer_chain
+from Agents.codeGeneration.caller import caller_node
+from Agents.codeGeneration.planner import planner_node,planner_brancher,tool_brancher
+from Agents.codeGeneration.mainTools import tool_node
+from Agents.codeGeneration.designer import designer_chain
+from Agents.codeGeneration.coder import coder_node
 from langgraph.graph import StateGraph, START, END
 from langchain_core.messages import AnyMessage
-from coder import coder_node
 import operator
 import os
 import sys
@@ -56,8 +56,6 @@ class State(TypedDict):
     """
     project_id:str
     messages: Annotated[list[AnyMessage], operator.add]
-    call: NotRequired[str]
-    code_output: NotRequired[str]
     visualization: NotRequired[dict]
     next: NotRequired[str]
 
@@ -79,12 +77,15 @@ graph = builder.compile()
 def generate_visualizations(project_id):
     data_report=mainDatabase.fetch_data_report(project_id)
     response=designer_chain.invoke({'data_report':data_report})
-    print(response)
     visualizations=[]
     print(len(response.response))
-    for design in response.response:
-        response=graph.invoke({'project_id':project_id,'messages':[{"role":"human","content":str(design)}]})
-        visualizations.append(response['visualization'])
-    return visualizations      
-
-visualizations=generate_visualizations(1)
+    print(response.response)
+    try:
+        for idx,design in  enumerate(response.response):
+            graph_response=graph.invoke({'project_id':str(project_id),'messages':[{"role":"human","content":str(design)}]})
+            if graph_response['visualization']:
+                visualizations.append(graph_response['visualization'])
+                print(idx)
+    except Exception as e:
+        print(e)
+    return visualizations     

@@ -38,7 +38,7 @@ load_dotenv()
 
 
 CONFIGURATIONS={
-    'temperature':0.5,
+    'temperature':0.6,
     'model':"gemini-1.5-flash",
 }
 
@@ -56,5 +56,5 @@ prompt = ChatPromptTemplate.from_messages([
     ("user", "Here is the data report, based on it write the visualizations needed by following the system instruction:\n\n {data_report}"),
 ])
 
-designer_chain=chain = prompt | llm.with_structured_output(Designer)
+designer_chain = prompt | llm.with_structured_output(Designer)
 
