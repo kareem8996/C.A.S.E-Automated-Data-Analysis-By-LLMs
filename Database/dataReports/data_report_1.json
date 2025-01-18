@@ -3,21 +3,21 @@
         "Number of Rows": 891,
         "Number of Columns": 15,
         "Missing Data Summary": {
-            "survived": 0,
-            "pclass": 0,
-            "sex": 0,
-            "age": 177,
-            "sibsp": 0,
-            "parch": 0,
-            "fare": 0,
-            "embarked": 2,
-            "class": 0,
-            "who": 0,
-            "adult_male": 0,
-            "deck": 688,
-            "embark_town": 2,
-            "alive": 0,
-            "alone": 0
+            "Survived": 0,
+            "Pclass": 0,
+            "Sex": 0,
+            "Age": 177,
+            "Sibsp": 0,
+            "Parch": 0,
+            "Fare": 0,
+            "Embarked": 2,
+            "Class": 0,
+            "Who": 0,
+            "Adult_male": 0,
+            "Deck": 688,
+            "Embark_town": 2,
+            "Alive": 0,
+            "Alone": 0
         },
         "Feature Types Summary": {
             "object": 5,
@@ -28,7 +28,7 @@
         }
     },
     "Feature Details": {
-        "survived": {
+        "Survived": {
             "Column Description": "Indicates whether the passenger survived (1) or died (0).",
             "Data Type": "int64",
             "Unique Values Count": 2,
@@ -48,7 +48,7 @@
                 "Upper Bound": 2.5
             }
         },
-        "pclass": {
+        "Pclass": {
             "Column Description": "Passenger's travel class: 1st, 2nd, or 3rd.",
             "Data Type": "int64",
             "Unique Values Count": 3,
@@ -68,7 +68,7 @@
                 "Upper Bound": 4.5
             }
         },
-        "sex": {
+        "Sex": {
             "Column Description": "Gender of the passenger.",
             "Data Type": "object",
             "Unique Values Count": 2,
@@ -79,7 +79,7 @@
             },
             "Mode": "male"
         },
-        "age": {
+        "Age": {
             "Column Description": "Age of the passenger in years.",
             "Data Type": "float64",
             "Unique Values Count": 88,
@@ -99,7 +99,7 @@
                 "Upper Bound": 64.8125
             }
         },
-        "sibsp": {
+        "Sibsp": {
             "Column Description": "Number of siblings/spouses aboard the Titanic.",
             "Data Type": "int64",
             "Unique Values Count": 7,
@@ -119,7 +119,7 @@
                 "Upper Bound": 2.5
             }
         },
-        "parch": {
+        "Parch": {
             "Column Description": "Number of parents/children aboard the Titanic.",
             "Data Type": "int64",
             "Unique Values Count": 7,
@@ -139,7 +139,7 @@
                 "Upper Bound": 0.0
             }
         },
-        "fare": {
+        "Fare": {
             "Column Description": "Fare paid by the passenger.",
             "Data Type": "float64",
             "Unique Values Count": 248,
@@ -159,7 +159,7 @@
                 "Upper Bound": 65.6344
             }
         },
-        "embarked": {
+        "Embarked": {
             "Column Description": "Port of embarkation: C = Cherbourg, Q = Queenstown, S = Southampton.",
             "Data Type": "object",
             "Unique Values Count": 3,
@@ -171,7 +171,7 @@
             },
             "Mode": "S"
         },
-        "class": {
+        "Class": {
             "Column Description": "Travel class as a categorical feature.",
             "Data Type": "category",
             "Unique Values Count": 3,
@@ -183,7 +183,7 @@
             },
             "Mode": "Third"
         },
-        "who": {
+        "Who": {
             "Column Description": "Categorical feature indicating 'man', 'woman', or 'child'.",
             "Data Type": "object",
             "Unique Values Count": 3,
@@ -195,7 +195,7 @@
             },
             "Mode": "man"
         },
-        "adult_male": {
+        "Adult_male": {
             "Column Description": "Boolean indicating if the passenger is an adult male.",
             "Data Type": "bool",
             "Unique Values Count": 2,
@@ -205,7 +205,7 @@
                 "Count False": 354
             }
         },
-        "deck": {
+        "Deck": {
             "Column Description": "Deck location of the passenger's cabin.",
             "Data Type": "category",
             "Unique Values Count": 7,
@@ -221,7 +221,7 @@
             },
             "Mode": "C"
         },
-        "embark_town": {
+        "Embark_town": {
             "Column Description": "Town where the passenger embarked.",
             "Data Type": "object",
             "Unique Values Count": 3,
@@ -233,7 +233,7 @@
             },
             "Mode": "Southampton"
         },
-        "alive": {
+        "Alive": {
             "Column Description": "Indicates whether the passenger survived ('yes') or died ('no').",
             "Data Type": "object",
             "Unique Values Count": 2,
@@ -244,7 +244,7 @@
             },
             "Mode": "no"
         },
-        "alone": {
+        "Alone": {
             "Column Description": "Boolean indicating if the passenger traveled alone.",
             "Data Type": "bool",
             "Unique Values Count": 2,
@@ -256,57 +256,57 @@
         }
     },
     "Correlations": {
-        "survived": {
-            "survived": 1.0,
-            "pclass": -0.33848103596101514,
-            "age": -0.07722109457217756,
-            "sibsp": -0.035322498885735576,
-            "parch": 0.08162940708348335,
-            "fare": 0.2573065223849626
+        "Survived": {
+            "Survived": 1.0,
+            "Pclass": -0.33848103596101514,
+            "Age": -0.07722109457217756,
+            "Sibsp": -0.035322498885735576,
+            "Parch": 0.08162940708348335,
+            "Fare": 0.2573065223849626
         },
-        "pclass": {
-            "survived": -0.33848103596101514,
-            "pclass": 1.0,
-            "age": -0.36922601531551735,
-            "sibsp": 0.08308136284568686,
-            "parch": 0.018442671310748508,
-            "fare": -0.5494996199439076
+        "Pclass": {
+            "Survived": -0.33848103596101514,
+            "Pclass": 1.0,
+            "Age": -0.36922601531551735,
+            "Sibsp": 0.08308136284568686,
+            "Parch": 0.018442671310748508,
+            "Fare": -0.5494996199439076
         },
-        "age": {
-            "survived": -0.07722109457217756,
-            "pclass": -0.36922601531551735,
-            "age": 1.0,
-            "sibsp": -0.30824675892365666,
-            "parch": -0.1891192626320352,
-            "fare": 0.09606669176903912
+        "Age": {
+            "Survived": -0.07722109457217756,
+            "Pclass": -0.36922601531551735,
+            "Age": 1.0,
+            "Sibsp": -0.30824675892365666,
+            "Parch": -0.1891192626320352,
+            "Fare": 0.09606669176903912
         },
-        "sibsp": {
-            "survived": -0.035322498885735576,
-            "pclass": 0.08308136284568686,
-            "age": -0.30824675892365666,
-            "sibsp": 1.0,
-            "parch": 0.41483769862015624,
-            "fare": 0.159651043242161
+        "Sibsp": {
+            "Survived": -0.035322498885735576,
+            "Pclass": 0.08308136284568686,
+            "Age": -0.30824675892365666,
+            "Sibsp": 1.0,
+            "Parch": 0.41483769862015624,
+            "Fare": 0.159651043242161
         },
-        "parch": {
-            "survived": 0.08162940708348335,
-            "pclass": 0.018442671310748508,
-            "age": -0.1891192626320352,
-            "sibsp": 0.41483769862015624,
-            "parch": 1.0,
-            "fare": 0.21622494477076448
+        "Parch": {
+            "Survived": 0.08162940708348335,
+            "Pclass": 0.018442671310748508,
+            "Age": -0.1891192626320352,
+            "Sibsp": 0.41483769862015624,
+            "Parch": 1.0,
+            "Fare": 0.21622494477076448
         },
-        "fare": {
-            "survived": 0.2573065223849626,
-            "pclass": -0.5494996199439076,
-            "age": 0.09606669176903912,
-            "sibsp": 0.159651043242161,
-            "parch": 0.21622494477076448,
-            "fare": 1.0
+        "Fare": {
+            "Survived": 0.2573065223849626,
+            "Pclass": -0.5494996199439076,
+            "Age": 0.09606669176903912,
+            "Sibsp": 0.159651043242161,
+            "Parch": 0.21622494477076448,
+            "Fare": 1.0
         }
     },
     "Numeric-Categorical Relationships": {
-        "sex -> survived": {
+        "Sex -> Survived": {
             "count": {
                 "female": 314.0,
                 "male": 577.0
@@ -340,7 +340,7 @@
                 "male": 1.0
             }
         },
-        "embarked -> survived": {
+        "Embarked -> Survived": {
             "count": {
                 "C": 168.0,
                 "Q": 77.0,
@@ -382,7 +382,7 @@
                 "S": 1.0
             }
         },
-        "class -> survived": {
+        "Class -> Survived": {
             "count": {
                 "First": 216.0,
                 "Second": 184.0,
@@ -424,7 +424,7 @@
                 "Third": 1.0
             }
         },
-        "who -> survived": {
+        "Who -> Survived": {
             "count": {
                 "child": 83.0,
                 "man": 537.0,
@@ -466,7 +466,7 @@
                 "woman": 1.0
             }
         },
-        "deck -> survived": {
+        "Deck -> Survived": {
             "count": {
                 "A": 15.0,
                 "B": 47.0,
@@ -540,7 +540,7 @@
                 "G": 1.0
             }
         },
-        "embark_town -> survived": {
+        "Embark_town -> Survived": {
             "count": {
                 "Cherbourg": 168.0,
                 "Queenstown": 77.0,
@@ -582,7 +582,7 @@
                 "Southampton": 1.0
             }
         },
-        "alive -> survived": {
+        "Alive -> Survived": {
             "count": {
                 "no": 549.0,
                 "yes": 342.0
@@ -616,7 +616,7 @@
                 "yes": 1.0
             }
         },
-        "sex -> pclass": {
+        "Sex -> Pclass": {
             "count": {
                 "female": 314.0,
                 "male": 577.0
@@ -650,7 +650,7 @@
                 "male": 3.0
             }
         },
-        "embarked -> pclass": {
+        "Embarked -> Pclass": {
             "count": {
                 "C": 168.0,
                 "Q": 77.0,
@@ -734,7 +734,7 @@
                 "Third": 3.0
             }
         },
-        "who -> pclass": {
+        "Who -> Pclass": {
             "count": {
                 "child": 83.0,
                 "man": 537.0,
@@ -776,7 +776,7 @@
                 "woman": 3.0
             }
         },
-        "deck -> pclass": {
+        "Deck -> Pclass": {
             "count": {
                 "A": 15.0,
                 "B": 47.0,
@@ -850,7 +850,7 @@
                 "G": 3.0
             }
         },
-        "embark_town -> pclass": {
+        "Embark_town -> Pclass": {
             "count": {
                 "Cherbourg": 168.0,
                 "Queenstown": 77.0,
@@ -892,7 +892,7 @@
                 "Southampton": 3.0
             }
         },
-        "alive -> pclass": {
+        "Alive -> Pclass": {
             "count": {
                 "no": 549.0,
                 "yes": 342.0
@@ -926,7 +926,7 @@
                 "yes": 3.0
             }
         },
-        "sex -> age": {
+        "Sex -> Age": {
             "count": {
                 "female": 261.0,
                 "male": 453.0
@@ -960,7 +960,7 @@
                 "male": 80.0
             }
         },
-        "embarked -> age": {
+        "Embarked -> Age": {
             "count": {
                 "C": 130.0,
                 "Q": 28.0,
@@ -1002,7 +1002,7 @@
                 "S": 80.0
             }
         },
-        "class -> age": {
+        "Class -> Age": {
             "count": {
                 "First": 186.0,
                 "Second": 173.0,
@@ -1044,7 +1044,7 @@
                 "Third": 74.0
             }
         },
-        "who -> age": {
+        "Who -> Age": {
             "count": {
                 "child": 83.0,
                 "man": 413.0,
@@ -1086,7 +1086,7 @@
                 "woman": 63.0
             }
         },
-        "deck -> age": {
+        "Deck -> Age": {
             "count": {
                 "A": 12.0,
                 "B": 45.0,
@@ -1160,7 +1160,7 @@
                 "G": 29.0
             }
         },
-        "embark_town -> age": {
+        "Embark_town -> Age": {
             "count": {
                 "Cherbourg": 130.0,
                 "Queenstown": 28.0,
@@ -1202,7 +1202,7 @@
                 "Southampton": 80.0
             }
         },
-        "alive -> age": {
+        "Alive -> Age": {
             "count": {
                 "no": 424.0,
                 "yes": 290.0
@@ -1236,7 +1236,7 @@
                 "yes": 80.0
             }
         },
-        "sex -> sibsp": {
+        "Sex -> Sibsp": {
             "count": {
                 "female": 314.0,
                 "male": 577.0
@@ -1270,7 +1270,7 @@
                 "male": 8.0
             }
         },
-        "embarked -> sibsp": {
+        "Embarked -> Sibsp": {
             "count": {
                 "C": 168.0,
                 "Q": 77.0,
@@ -1312,7 +1312,7 @@
                 "S": 8.0
             }
         },
-        "class -> sibsp": {
+        "Class -> Sibsp": {
             "count": {
                 "First": 216.0,
                 "Second": 184.0,
@@ -1354,7 +1354,7 @@
                 "Third": 8.0
             }
         },
-        "who -> sibsp": {
+        "Who -> Sibsp": {
             "count": {
                 "child": 83.0,
                 "man": 537.0,
@@ -1396,7 +1396,7 @@
                 "woman": 8.0
             }
         },
-        "deck -> sibsp": {
+        "Deck -> Sibsp": {
             "count": {
                 "A": 15.0,
                 "B": 47.0,
@@ -1470,7 +1470,7 @@
                 "G": 1.0
             }
         },
-        "embark_town -> sibsp": {
+        "Embark_town -> Sibsp": {
             "count": {
                 "Cherbourg": 168.0,
                 "Queenstown": 77.0,
@@ -1512,7 +1512,7 @@
                 "Southampton": 8.0
             }
         },
-        "alive -> sibsp": {
+        "Alive -> Sibsp": {
             "count": {
                 "no": 549.0,
                 "yes": 342.0
@@ -1546,7 +1546,7 @@
                 "yes": 4.0
             }
         },
-        "sex -> parch": {
+        "Sex -> Parch": {
             "count": {
                 "female": 314.0,
                 "male": 577.0
@@ -1580,7 +1580,7 @@
                 "male": 5.0
             }
         },
-        "embarked -> parch": {
+        "Embarked -> Parch": {
             "count": {
                 "C": 168.0,
                 "Q": 77.0,
@@ -1622,7 +1622,7 @@
                 "S": 6.0
             }
         },
-        "class -> parch": {
+        "Class -> Parch": {
             "count": {
                 "First": 216.0,
                 "Second": 184.0,
@@ -1664,7 +1664,7 @@
                 "Third": 6.0
             }
         },
-        "who -> parch": {
+        "Who -> Parch": {
             "count": {
                 "child": 83.0,
                 "man": 537.0,
@@ -1706,7 +1706,7 @@
                 "woman": 6.0
             }
         },
-        "deck -> parch": {
+        "Deck -> Parch": {
             "count": {
                 "A": 15.0,
                 "B": 47.0,
@@ -1780,7 +1780,7 @@
                 "G": 2.0
             }
         },
-        "embark_town -> parch": {
+        "Embark_town -> Parch": {
             "count": {
                 "Cherbourg": 168.0,
                 "Queenstown": 77.0,
@@ -1822,7 +1822,7 @@
                 "Southampton": 6.0
             }
         },
-        "alive -> parch": {
+        "Alive -> Parch": {
             "count": {
                 "no": 549.0,
                 "yes": 342.0
@@ -1856,7 +1856,7 @@
                 "yes": 5.0
             }
         },
-        "sex -> fare": {
+        "Sex -> Fare": {
             "count": {
                 "female": 314.0,
                 "male": 577.0
@@ -1890,7 +1890,7 @@
                 "male": 512.3292
             }
         },
-        "embarked -> fare": {
+        "Embarked -> Fare": {
             "count": {
                 "C": 168.0,
                 "Q": 77.0,
@@ -1932,7 +1932,7 @@
                 "S": 263.0
             }
         },
-        "class -> fare": {
+        "Class -> Fare": {
             "count": {
                 "First": 216.0,
                 "Second": 184.0,
@@ -1974,7 +1974,7 @@
                 "Third": 69.55
             }
         },
-        "who -> fare": {
+        "Who -> Fare": {
             "count": {
                 "child": 83.0,
                 "man": 537.0,
@@ -2016,7 +2016,7 @@
                 "woman": 512.3292
             }
         },
-        "deck -> fare": {
+        "Deck -> Fare": {
             "count": {
                 "A": 15.0,
                 "B": 47.0,
@@ -2090,7 +2090,7 @@
                 "G": 16.7
             }
         },
-        "embark_town -> fare": {
+        "Embark_town -> Fare": {
             "count": {
                 "Cherbourg": 168.0,
                 "Queenstown": 77.0,
@@ -2132,7 +2132,7 @@
                 "Southampton": 263.0
             }
         },
-        "alive -> fare": {
+        "Alive -> Fare": {
             "count": {
                 "no": 549.0,
                 "yes": 342.0
