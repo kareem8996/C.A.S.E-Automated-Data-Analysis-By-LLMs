@@ -32,7 +32,6 @@ class SignUp:
         Private method to register a new user based on the provided information.
         Updates the session state upon successful sign-up.
         """
-        print(self.__username , self.__last_name , self.__first_name , self.__password , self.__email)
         if self.__username and self.__last_name and self.__first_name and self.__password and self.__email:
             response=databaseRequests.check_signup(self.__first_name,self.__last_name,self.__email,self.__username,self.__password)
             if response=="Email already exists.":
