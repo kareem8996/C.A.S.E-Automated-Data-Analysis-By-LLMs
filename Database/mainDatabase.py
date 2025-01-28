@@ -11,6 +11,7 @@ project_directory=r'Database\Projects\projects.csv' #temp until we create a real
 raw_datasets_directory=r'Database\rawDatasets'
 processed_datasets_directory=r'Database\processedDatasets'
 data_reports_directory=r'Database\dataReports'
+chat_directory=r'Database\Users\chat.csv'
 
 def check_login(username,password):
     df=pd.read_csv(user_directory)
@@ -152,3 +153,44 @@ def fetch_data_report(project_id):
             return json_string
     else:
         return None
+
+def create_new_chat_id(user_id):
+    df=pd.read_csv(chat_directory)
+    if len(df)>0:
+        chat_id=int(df.chat_id.tail(1).values[0])+1
+    else:
+        chat_id=1
+    with open(chat_directory, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([chat_id,user_id])
+    return chat_id
+
+def clear_history(user_id):
+    df=pd.read_csv(chat_directory)
+    df_filtered = df[df['user_id'].astype(str)!=user_id]
+    df_filtered.to_csv(chat_directory,index=False)
+
+def get_model_chat_history(chat_id):
+    df=pd.read_csv(chat_directory)
+    if df[df['chat_id'].astype(int)==int(chat_id)]['st_history'] is not None:
+        try:
+            return json.loads(df[df['chat_id'].astype(int)==int(chat_id)]['st_history'].values[0])
+        except:
+            return []
+
+def update_st_chat_history(chat_id,last_conv : list):
+    df=pd.read_csv(chat_directory)
+    if get_model_chat_history(chat_id) is []:
+        hist_dict={'st_history':[],'model_history':[]}
+    else:
+        hist_dict={'st_history':get_model_chat_history(chat_id),'model_history':get_model_chat_history(chat_id)}
+    for message in last_conv:
+        hist_dict['st_history'].append({'role':message[0]['role'],'content':message[0]['content']})
+        if 'visualizer'!=message[0]['role']:
+            hist_dict['model_history'].append({'role':message[0]['role'],'content':message[0]['content']})
+
+    df.loc[df['chat_id'].astype(int)==int(chat_id),'st_history']=json.dumps(hist_dict['st_history'])
+    df.loc[df['chat_id'].astype(int)==int(chat_id),'model_history']=json.dumps(hist_dict['model_history'])
+    
+    df.loc[df['chat_id'].astype(int) ==int(chat_id),'last_date']=datetime.now()
+    df.to_csv(chat_directory,index=False)
