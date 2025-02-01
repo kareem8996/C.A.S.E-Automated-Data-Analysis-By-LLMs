@@ -1,0 +1,4 @@
+# requirements.txt
+streamlit
+pandas
+google-generativeai
