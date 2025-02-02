@@ -33,20 +33,20 @@ Variables:
 - builder: An instance of StateGraph to build the state graph.
 - graph: The compiled state graph.
 """
-
+import sys
+sys.path.append("C.A.S.E-Automated-Data-Analysis-By-LLMs\Agents\\")
 from typing_extensions import TypedDict,Annotated,NotRequired
 import operator
 from langgraph.graph import StateGraph, START, END
-from Agents.codeGeneration.caller import caller_node
-from Agents.codeGeneration.planner import planner_node,planner_brancher,tool_brancher
-from Agents.codeGeneration.mainTools import tool_node
-from Agents.codeGeneration.designer import designer_chain
-from Agents.codeGeneration.coder import coder_node
+from caller import caller_node
+from planner import planner_node,planner_brancher,tool_brancher
+from mainTools import tool_node
+from designer import designer_chain
+from coder.coderPipeline import coder
 from langgraph.graph import StateGraph, START, END
 from langchain_core.messages import AnyMessage
 import operator
 import os
-import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from Database import mainDatabase
 
@@ -56,8 +56,9 @@ class State(TypedDict):
     """
     project_id:str
     messages: Annotated[list[AnyMessage], operator.add]
-    visualization: NotRequired[dict]
+    visualization: NotRequired[Annotated[list[dict], operator.add]]
     next: NotRequired[str]
+    data_report: NotRequired[str]
 
 
 
@@ -65,7 +66,7 @@ builder = StateGraph(State)
 builder.add_node("planner", planner_node)
 builder.add_node("caller", caller_node)
 builder.add_node("tools", tool_node)
-builder.add_node("coder", coder_node)
+builder.add_node("coder", coder)
 
 builder.add_edge(START, "planner")
 builder.add_conditional_edges("planner", planner_brancher)
@@ -82,10 +83,10 @@ def generate_visualizations(project_id):
     print(response.response)
     try:
         for idx,design in  enumerate(response.response):
-            graph_response=graph.invoke({'project_id':str(project_id),'messages':[{"role":"human","content":str(design)}]})
+            graph_response=graph.invoke({'project_id':str(project_id),'messages':[{"role":"human","content":str(design)}],data_report:data_report})
             if graph_response['visualization']:
-                visualizations.append(graph_response['visualization'])
-                print(idx)
+                for viz in graph_response['visualization']:
+                    visualizations.append(viz)
     except Exception as e:
         print(e)
     return visualizations     
